@@ -18,4 +18,7 @@ class Todo {
   isProject() {
     return this.nested.length > 0;
   }
+  toggleDone() {
+    this.done = !this.done;
+  }
 }
