@@ -1,0 +1,19 @@
+{
+  "name": "top-todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tg0xff/top-todo-list.git"
+  },
+  "author": "tg0xff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tg0xff/top-todo-list/issues"
+  },
+  "homepage": "https://github.com/tg0xff/top-todo-list#readme"
+}
