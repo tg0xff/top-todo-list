@@ -3,6 +3,7 @@ function Todo(title) {
   this.description = "";
   this.dueDate = "";
   this.priority = 1;
+  this.done = false;
   this.nested = [];
 }
 
