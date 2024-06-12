@@ -9,3 +9,7 @@ function Todo(title) {
 Todo.prototype.setDescription = function (description) {
   this.description = description;
 };
+
+Todo.prototype.isProject = function () {
+  return this.nested.length > 0;
+};
