@@ -7,9 +7,6 @@ class Todo {
     this.done = false;
     this.nested = [];
   }
-  setDescription(description) {
-    this.description = description;
-  }
   isProject() {
     return this.nested.length > 0;
   }
