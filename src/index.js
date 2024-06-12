@@ -1,10 +1,11 @@
 class Todo {
+  #title;
+  #description = "";
+  #dueDate = "";
+  #priority = 1;
+  #done = false;
   constructor(title) {
-    this.title = title;
-    this.description = "";
-    this.dueDate = "";
-    this.priority = 1;
-    this.done = false;
+    this.#title = title;
     this.nested = [];
   }
   setDescription(description) {
