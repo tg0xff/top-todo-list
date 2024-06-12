@@ -18,6 +18,7 @@
   "homepage": "https://github.com/tg0xff/top-todo-list#readme",
   "devDependencies": {
     "webpack": "^5.92.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.10.0"
   }
 }
