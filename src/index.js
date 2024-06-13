@@ -1,18 +1,18 @@
-class UI {
-  static #body = document.querySelector("body");
-  static #newTask = this.#body.querySelector("#new-task");
-  static #clickBtn(e) {
+const UI = (() => {
+  const body = document.querySelector("body");
+  const newTask = body.querySelector("#new-task");
+  const clickBtn = function (e) {
     switch (e.target.id) {
       case "new-task":
-        this.#addTask();
+        addTask();
         break;
     }
-  }
-  static #addTask() {
+  };
+  const addTask = () => {
     const task = document.createElement("div");
     task.classList.add("task");
     const form = document.createElement("span");
-    form.classList.add("new-task-form")
+    form.classList.add("new-task-form");
     const title = document.createElement("input");
     title.type = "text";
     title.setAttribute("required", "");
@@ -27,9 +27,11 @@ class UI {
     form.appendChild(ok);
     form.appendChild(cancel);
     task.appendChild(form);
-    this.#body.insertBefore(task, this.#newTask);
-  }
-}
+    body.insertBefore(task, newTask);
+  };
+  body.addEventListener("click", clickBtn);
+  return {};
+})();
 
 class Todo {
   #priority = 1;
