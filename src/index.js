@@ -4,12 +4,30 @@ class UI {
   static #clickBtn(e) {
     switch (e.target.id) {
       case "new-task":
-        this.#newTask();
+        this.#addTask();
         break;
     }
   }
-  constructor() {
-    UI.#body.addEventListener("click", UI.#clickBtn);
+  static #addTask() {
+    const task = document.createElement("div");
+    task.classList.add("task");
+    const form = document.createElement("span");
+    form.classList.add("new-task-form")
+    const title = document.createElement("input");
+    title.type = "text";
+    title.setAttribute("required", "");
+    const ok = document.createElement("button");
+    ok.classList.add("new-task-ok");
+    ok.textContent = "Ok";
+    const cancel = document.createElement("button");
+    cancel.classList.add("new-task-cancel");
+    cancel.textContent = "Cancel";
+
+    form.appendChild(title);
+    form.appendChild(ok);
+    form.appendChild(cancel);
+    task.appendChild(form);
+    this.#body.insertBefore(task, this.#newTask);
   }
 }
 
