@@ -1,3 +1,18 @@
+class UI {
+  static #body = document.querySelector("body");
+  static #newTask = this.#body.querySelector("#new-task");
+  static #clickBtn(e) {
+    switch (e.target.id) {
+      case "new-task":
+        this.#newTask();
+        break;
+    }
+  }
+  constructor() {
+    UI.#body.addEventListener("click", UI.#clickBtn);
+  }
+}
+
 class Todo {
   #priority = 1;
   constructor(title) {
