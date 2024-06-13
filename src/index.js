@@ -22,3 +22,11 @@ class Todo {
     this.done = !this.done;
   }
 }
+
+class Storage {
+  static storage = [];
+  static newTodo(title) {
+    const todoItem = new Todo(title);
+    this.storage.push(todoItem);
+  }
+}
