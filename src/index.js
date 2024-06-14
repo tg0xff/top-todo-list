@@ -3,20 +3,25 @@ import { mdiCheckCircle, mdiCloseCircle, mdiPlusCircle } from "@mdi/js";
 
 const UI = (() => {
   const body = document.querySelector("body");
-  const makeIconSvg = function (iconData, size) {
+  const makeIconSvg = function (iconData, size, btnClass) {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
     svg.setAttribute("height", `${size}px`);
     svg.setAttribute("width", `${size}px`);
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", iconData);
+    if (btnClass) {
+      path.classList.add(btnClass);
+      svg.classList.add(btnClass);
+    }
     svg.appendChild(path);
     return svg;
   };
   const newTaskBtn = (() => {
     const button = document.createElement("button");
-    button.classList.add("new-task");
-    const btnIcon = makeIconSvg(mdiPlusCircle, 24);
+    const btnClass = "new-task";
+    button.classList.add();
+    const btnIcon = makeIconSvg(mdiPlusCircle, 24, btnClass);
     button.appendChild(btnIcon);
     body.appendChild(button);
     return button;
@@ -30,12 +35,14 @@ const UI = (() => {
     title.type = "text";
     title.setAttribute("required", "");
     const ok = document.createElement("button");
-    ok.classList.add("new-task-ok");
-    const okIcon = makeIconSvg(mdiCheckCircle, 24);
+    const okClass = "new-task-ok";
+    ok.classList.add(okClass);
+    const okIcon = makeIconSvg(mdiCheckCircle, 24, okClass);
     ok.appendChild(okIcon);
     const cancel = document.createElement("button");
-    cancel.classList.add("new-task-cancel");
-    const cancelIcon = makeIconSvg(mdiCloseCircle, 24);
+    const cancelClass = "new-task-cancel";
+    cancel.classList.add(cancelClass);
+    const cancelIcon = makeIconSvg(mdiCloseCircle, 24, cancelClass);
     cancel.appendChild(cancelIcon);
 
     form.appendChild(title);
