@@ -9,3 +9,33 @@ body {
   font-size: 1rem;
   margin: 0 16px;
 }
+
+button,
+input[type="text"] {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button {
+  color: #000;
+  background-color: #fff;
+  border: none;
+}
+
+button:hover {
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+button:active {
+  color: #fff;
+  background-color: #000;
+}
+
+input[type="text"] {
+  appearance: none;
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+}
