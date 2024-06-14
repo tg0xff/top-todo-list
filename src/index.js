@@ -1,4 +1,4 @@
-import './style.css';
+import "./style.css";
 
 const UI = (() => {
   const body = document.querySelector("body");
@@ -10,7 +10,7 @@ const UI = (() => {
     path.setAttribute(d, iconData);
     svg.appendChild(path);
     return svg;
-  }
+  };
   const clickBtn = function (e) {
     switch (e.target.id) {
       case "new-task":
