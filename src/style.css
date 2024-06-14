@@ -29,6 +29,7 @@ button:hover {
 
 button:active {
   color: #fff;
+  fill: #fff;
   background-color: #000;
 }
 
