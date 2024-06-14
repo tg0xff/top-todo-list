@@ -15,7 +15,7 @@ const UI = (() => {
   };
   const newTaskBtn = (() => {
     const button = document.createElement("button");
-    button.setAttribute("id", "new-task");
+    button.classList.add("new-task");
     const btnIcon = makeIconSvg(mdiPlusCircle);
     button.appendChild(btnIcon);
     body.appendChild(button);
@@ -45,10 +45,8 @@ const UI = (() => {
     body.insertBefore(task, newTaskBtn);
   };
   const clickBtn = function (e) {
-    switch (e.target.id) {
-      case "new-task":
+    if (e.target.classList.contains("new-task")) {
         addTask();
-        break;
     }
   };
   body.addEventListener("click", clickBtn);
