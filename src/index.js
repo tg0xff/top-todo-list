@@ -3,6 +3,14 @@ import './style.css';
 const UI = (() => {
   const body = document.querySelector("body");
   const newTaskBtn = body.querySelector("#new-task");
+  const makeIconSvg = function (iconData) {
+    const svg = document.createElement("svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    const path = document.createElement("path");
+    path.setAttribute(d, iconData);
+    svg.appendChild(path);
+    return svg;
+  }
   const clickBtn = function (e) {
     switch (e.target.id) {
       case "new-task":
