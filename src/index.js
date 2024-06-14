@@ -1,3 +1,5 @@
+import './style.css';
+
 const UI = (() => {
   const body = document.querySelector("body");
   const newTask = body.querySelector("#new-task");
