@@ -2,7 +2,7 @@ import './style.css';
 
 const UI = (() => {
   const body = document.querySelector("body");
-  const newTask = body.querySelector("#new-task");
+  const newTaskBtn = body.querySelector("#new-task");
   const clickBtn = function (e) {
     switch (e.target.id) {
       case "new-task":
@@ -29,7 +29,7 @@ const UI = (() => {
     form.appendChild(ok);
     form.appendChild(cancel);
     task.appendChild(form);
-    body.insertBefore(task, newTask);
+    body.insertBefore(task, newTaskBtn);
   };
   body.addEventListener("click", clickBtn);
   return {};
