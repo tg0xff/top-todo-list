@@ -1,9 +1,8 @@
 import "./style.css";
-import { mdiCheckCircle, mdiCloseCircle } from "@mdi/js";
+import { mdiCheckCircle, mdiCloseCircle, mdiPlusCircle } from "@mdi/js";
 
 const UI = (() => {
   const body = document.querySelector("body");
-  const newTaskBtn = body.querySelector("#new-task");
   const makeIconSvg = function (iconData) {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 24 24");
@@ -14,6 +13,14 @@ const UI = (() => {
     svg.appendChild(path);
     return svg;
   };
+  const newTaskBtn = (() => {
+    const button = document.createElement("button");
+    button.setAttribute("id", "new-task");
+    const btnIcon = makeIconSvg(mdiPlusCircle);
+    button.appendChild(btnIcon);
+    body.appendChild(button);
+    return button;
+  })();
   const addTask = () => {
     const task = document.createElement("div");
     task.classList.add("task");
