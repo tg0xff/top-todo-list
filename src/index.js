@@ -14,13 +14,6 @@ const UI = (() => {
     svg.appendChild(path);
     return svg;
   };
-  const clickBtn = function (e) {
-    switch (e.target.id) {
-      case "new-task":
-        addTask();
-        break;
-    }
-  };
   const addTask = () => {
     const task = document.createElement("div");
     task.classList.add("task");
@@ -43,6 +36,13 @@ const UI = (() => {
     form.appendChild(cancel);
     task.appendChild(form);
     body.insertBefore(task, newTaskBtn);
+  };
+  const clickBtn = function (e) {
+    switch (e.target.id) {
+      case "new-task":
+        addTask();
+        break;
+    }
   };
   body.addEventListener("click", clickBtn);
   return {};
