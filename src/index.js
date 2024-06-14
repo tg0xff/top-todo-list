@@ -1,13 +1,16 @@
 import "./style.css";
+import { mdiCheckCircle, mdiCloseCircle } from "@mdi/js";
 
 const UI = (() => {
   const body = document.querySelector("body");
   const newTaskBtn = body.querySelector("#new-task");
   const makeIconSvg = function (iconData) {
-    const svg = document.createElement("svg");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 24 24");
-    const path = document.createElement("path");
-    path.setAttribute(d, iconData);
+    svg.setAttribute("height", "24px");
+    svg.setAttribute("width", "24px");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", iconData);
     svg.appendChild(path);
     return svg;
   };
@@ -28,10 +31,12 @@ const UI = (() => {
     title.setAttribute("required", "");
     const ok = document.createElement("button");
     ok.classList.add("new-task-ok");
-    ok.textContent = "Ok";
+    const okIcon = makeIconSvg(mdiCheckCircle);
+    ok.appendChild(okIcon);
     const cancel = document.createElement("button");
     cancel.classList.add("new-task-cancel");
-    cancel.textContent = "Cancel";
+    const cancelIcon = makeIconSvg(mdiCloseCircle);
+    cancel.appendChild(cancelIcon);
 
     form.appendChild(title);
     form.appendChild(ok);
