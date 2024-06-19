@@ -63,7 +63,8 @@ const UI = (() => {
     } while (!form.classList.contains("new-task-form"));
     const task = form.parentNode;
     const titleInput = form.querySelector("input");
-    Storage.newTodo(titleInput.value, 0);
+    const taskId = Storage.newTodo(titleInput.value, 0);
+    task.setAttribute("data-id", taskId);
     form.remove();
 
     const taskHeader = document.createElement("span");
@@ -132,5 +133,6 @@ class Storage {
   static newTodo(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
     this.storage.push(todoItem);
+    return todoItem.id;
   }
 }
