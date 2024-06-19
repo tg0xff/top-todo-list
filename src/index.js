@@ -80,11 +80,20 @@ const UI = (() => {
     taskHeader.appendChild(title);
     task.appendChild(taskHeader);
   };
+  const cancelTaskForm = (e) => {
+    let task = e.target.parentNode;
+    do {
+      task = task.parentNode;
+    } while (task.className !== "task")
+    task.remove();
+  }
   const click = function (e) {
     if (e.target.classList.contains("new-task")) {
       addTaskForm();
     } else if (e.target.classList.contains("new-task-ok")) {
       createNewTask(e);
+    } else if (e.target.classList.contains("new-task-cancel")) {
+      cancelTaskForm(e);
     }
   };
   body.addEventListener("click", click);
