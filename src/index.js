@@ -20,7 +20,7 @@ const UI = (() => {
   const newTaskBtn = (() => {
     const button = document.createElement("button");
     const btnClass = "new-task";
-    button.classList.add();
+    button.classList.add(btnClass);
     const btnIcon = makeIconSvg(mdiPlusCircle, 24, btnClass);
     button.appendChild(btnIcon);
     body.appendChild(button);
