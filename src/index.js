@@ -51,9 +51,32 @@ const UI = (() => {
     task.appendChild(form);
     body.insertBefore(task, newTaskBtn);
   };
+  const createNewTask = (e) => {
+    let form = e.target.parentNode;
+    do {
+      form = form.parentNode;
+    } while (!form.classList.contains("new-task-form"));
+    const task = form.parentNode;
+    const titleInput = form.querySelector("input");
+    Storage.newTodo(titleInput.value);
+    form.remove();
+
+    const taskHeader = document.createElement("span");
+    const foldArrow = document.createElement("span");
+    const title = document.createElement("span");
+    taskHeader.classList.add("task-header");
+    foldArrow.classList.add("task-fold-arrow");
+    title.classList.add("task-title");
+    title.textContent = titleInput.value;
+    taskHeader.appendChild(foldArrow);
+    taskHeader.appendChild(title);
+    task.appendChild(taskHeader);
+  };
   const clickBtn = function (e) {
     if (e.target.classList.contains("new-task")) {
       addTaskForm();
+    } else if (e.target.classList.contains("new-task-ok")) {
+      createNewTask(e);
     }
   };
   body.addEventListener("click", clickBtn);
