@@ -26,7 +26,7 @@ const UI = (() => {
     body.appendChild(button);
     return button;
   })();
-  const addTask = () => {
+  const addTaskForm = () => {
     const task = document.createElement("div");
     task.classList.add("task");
     const form = document.createElement("span");
@@ -53,7 +53,7 @@ const UI = (() => {
   };
   const clickBtn = function (e) {
     if (e.target.classList.contains("new-task")) {
-      addTask();
+      addTaskForm();
     }
   };
   body.addEventListener("click", clickBtn);
