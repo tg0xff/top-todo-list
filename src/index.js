@@ -1,5 +1,5 @@
 import "./style.css";
-import { mdiCheckCircle, mdiCloseCircle, mdiPlusCircle } from "@mdi/js";
+import { mdiCheckCircle, mdiCloseCircle, mdiPlusCircle, mdiMenuRight } from "@mdi/js";
 
 const UI = (() => {
   const body = document.querySelector("body");
@@ -65,9 +65,12 @@ const UI = (() => {
     const foldArrow = document.createElement("span");
     const title = document.createElement("span");
     taskHeader.classList.add("task-header");
-    foldArrow.classList.add("task-fold-arrow");
+    const foldClass = "task-fold-arrow";
+    foldArrow.classList.add(foldClass);
+    const foldIcon = makeIconSvg(mdiMenuRight, 18, foldClass);
     title.classList.add("task-title");
     title.textContent = titleInput.value;
+    foldArrow.appendChild(foldIcon);
     taskHeader.appendChild(foldArrow);
     taskHeader.appendChild(title);
     task.appendChild(taskHeader);
