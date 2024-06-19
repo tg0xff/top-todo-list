@@ -80,14 +80,14 @@ const UI = (() => {
     taskHeader.appendChild(title);
     task.appendChild(taskHeader);
   };
-  const clickBtn = function (e) {
+  const click = function (e) {
     if (e.target.classList.contains("new-task")) {
       addTaskForm();
     } else if (e.target.classList.contains("new-task-ok")) {
       createNewTask(e);
     }
   };
-  body.addEventListener("click", clickBtn);
+  body.addEventListener("click", click);
 })();
 
 class Todo {
