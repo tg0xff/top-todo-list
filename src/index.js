@@ -130,6 +130,7 @@ class Todo {
 
 class Storage {
   static storage = [];
+  static topLvl = [];
   static newTodo(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
     this.storage.push(todoItem);
