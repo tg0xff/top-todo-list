@@ -63,7 +63,7 @@ const UI = (() => {
     } while (!form.classList.contains("new-task-form"));
     const task = form.parentNode;
     const titleInput = form.querySelector("input");
-    Storage.newTodo(titleInput.value);
+    Storage.newTodo(titleInput.value, 0);
     form.remove();
 
     const taskHeader = document.createElement("span");
@@ -102,11 +102,12 @@ const UI = (() => {
 class Todo {
   static #id = 0;
   #priority = 1;
-  constructor(title) {
+  constructor(title, nestedLvl) {
     this.title = title;
     this.description = "";
     this.dueDate = "";
     this.done = false;
+    this.nestedLvl = nestedLvl;
     this.nested = [];
     this.id = Todo.#id++;
   }
@@ -128,8 +129,8 @@ class Todo {
 
 class Storage {
   static storage = [];
-  static newTodo(title) {
-    const todoItem = new Todo(title);
+  static newTodo(title, nestedLvl) {
+    const todoItem = new Todo(title, nestedLvl);
     this.storage.push(todoItem);
   }
 }
