@@ -100,6 +100,7 @@ const UI = (() => {
 })();
 
 class Todo {
+  static #id = 0;
   #priority = 1;
   constructor(title) {
     this.title = title;
@@ -107,6 +108,7 @@ class Todo {
     this.dueDate = "";
     this.done = false;
     this.nested = [];
+    this.id = Todo.#id++;
   }
   set priority(lvl) {
     if (lvl >= 0 && lvl <= 2) {
