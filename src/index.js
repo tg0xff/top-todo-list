@@ -1,5 +1,10 @@
 import "./style.css";
-import { mdiCheckCircle, mdiCloseCircle, mdiPlusCircle, mdiMenuRight } from "@mdi/js";
+import {
+  mdiCheckCircle,
+  mdiCloseCircle,
+  mdiPlusCircle,
+  mdiMenuRight,
+} from "@mdi/js";
 
 const UI = (() => {
   const body = document.querySelector("body");
