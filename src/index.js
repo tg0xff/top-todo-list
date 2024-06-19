@@ -84,9 +84,9 @@ const UI = (() => {
     let task = e.target.parentNode;
     do {
       task = task.parentNode;
-    } while (task.className !== "task")
+    } while (task.className !== "task");
     task.remove();
-  }
+  };
   const click = function (e) {
     if (e.target.classList.contains("new-task")) {
       addTaskForm();
