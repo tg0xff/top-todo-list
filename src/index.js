@@ -129,11 +129,14 @@ class Todo {
 }
 
 class Storage {
-  static storage = [];
+  static storage = {
+    todos: [],
+    topLvl: [],
+  };
   static topLvl = [];
   static newTodo(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
-    this.storage.push(todoItem);
+    this.storage.todos.push(todoItem);
     return todoItem.id;
   }
 }
