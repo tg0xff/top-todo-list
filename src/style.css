@@ -5,13 +5,13 @@
 }
 
 :root {
-  --task-indentation: 12px;
+  --task-indentation: 16px;
 }
 
 body {
   font-family: system-ui, sans-serif;
   font-size: 1rem;
-  margin: 0 16px;
+  margin: 0 10px;
 }
 
 button,
@@ -46,12 +46,7 @@ input[type="text"] {
 }
 
 .task {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-body > .task {
-  margin-left: var(--task-indentation);
+  margin: 10px 0;
 }
 
 .new-task-form button {
