@@ -88,7 +88,6 @@ const UI = (() => {
     }
   };
   body.addEventListener("click", clickBtn);
-  return {};
 })();
 
 class Todo {
