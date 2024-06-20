@@ -4,6 +4,8 @@ import {
   mdiCloseCircle,
   mdiPlusCircle,
   mdiMenuRight,
+  mdiCheck,
+  mdiDelete,
 } from "@mdi/js";
 
 const UI = (() => {
@@ -55,6 +57,23 @@ const UI = (() => {
     form.appendChild(cancel);
     task.appendChild(form);
     body.insertBefore(task, newTaskBtn);
+  };
+  const createTaskButtons = (e) => {
+    const span = document.createElement("span");
+    const done = document.createElement("button");
+    const deleteTask = document.createElement("button");
+    span.className = "task-buttons";
+    const doneClass = "task-done";
+    const doneIcon = makeIconSvg(mdiCheck, 24, doneClass);
+    done.className = doneClass;
+    const deleteTaskClass = "task-delete";
+    const deleteTaskIcon = makeIconSvg(mdiDelete, 24, deleteTaskClass);
+    deleteTask.className = deleteTaskClass;
+    done.appendChild(doneIcon);
+    deleteTask.appendChild(deleteTaskIcon);
+    span.appendChild(done);
+    span.appendChild(deleteTask);
+    return span;
   };
   const createNewTask = (e) => {
     let form = e.target.parentNode;
