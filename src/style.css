@@ -89,3 +89,7 @@ input[type="text"] {
   display: grid;
   place-items: center;
 }
+
+.task-title.done {
+  text-decoration: line-through;
+}
