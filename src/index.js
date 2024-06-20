@@ -58,7 +58,7 @@ const UI = (() => {
     task.appendChild(form);
     body.insertBefore(task, newTaskBtn);
   };
-  const createTaskButtons = (e) => {
+  const createTaskButtons = () => {
     const span = document.createElement("span");
     const done = document.createElement("button");
     const deleteTask = document.createElement("button");
