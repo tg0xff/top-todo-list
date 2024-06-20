@@ -98,6 +98,8 @@ const UI = (() => {
     foldArrow.appendChild(foldIcon);
     taskHeader.appendChild(foldArrow);
     taskHeader.appendChild(title);
+    const taskButtons = createTaskButtons();
+    taskHeader.appendChild(taskButtons);
     task.appendChild(taskHeader);
   };
   const cancelTaskForm = (e) => {
