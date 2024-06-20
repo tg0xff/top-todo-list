@@ -71,3 +71,21 @@ input[type="text"] {
 .task-fold-arrow {
   margin-right: 4px;
 }
+
+.task-header {
+  display: inline-flex;
+  align-items: center;
+}
+
+.task-buttons {
+  margin-left: 8px;
+  display: inline-grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 8px;
+  place-items: center;
+}
+
+.task-buttons > * {
+  display: grid;
+  place-items: center;
+}
