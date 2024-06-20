@@ -49,6 +49,15 @@ input[type="text"] {
   margin: 10px 0;
 }
 
-.new-task-form button {
-  margin-left: 8px;
+.new-task-form {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  justify-contents: left;
+  place-items: center;
+  gap: 12px;
+}
+
+.new-task-form > * {
+  display: grid;
+  place-items: center;
 }
