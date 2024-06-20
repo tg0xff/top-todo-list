@@ -139,7 +139,6 @@ const UI = (() => {
 })();
 
 class Todo {
-  static #id = 0;
   #priority = 1;
   constructor(title, nestedLvl) {
     this.title = title;
@@ -148,7 +147,6 @@ class Todo {
     this.done = false;
     this.nestedLvl = nestedLvl;
     this.nested = [];
-    this.id = Todo.#id++;
   }
   set priority(lvl) {
     if (lvl >= 0 && lvl <= 2) {
