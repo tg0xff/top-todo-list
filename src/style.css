@@ -59,7 +59,7 @@ input[type="text"] {
   grid-template-columns: repeat(3, auto);
   justify-contents: left;
   place-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .new-task-form > * {
