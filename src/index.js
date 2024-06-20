@@ -109,6 +109,21 @@ const UI = (() => {
     } while (task.className !== "task");
     task.remove();
   };
+  const toggleTaskDone = (e) => {
+    let task = e.target.parentNode;
+    do {
+      task = task.parentNode;
+    } while (!task.classList.contains("task"));
+    const title = task.querySelector(".task-title");
+    const taskId = task.getAttribute("data-id");
+    Storage.storage.todos[taskId].toggleDone();
+    const doneState = Storage.storage.todos[taskId].done;
+    if (doneState) {
+      title.classList.add("done");
+    } else {
+      title.classList.remove("done");
+    }
+  };
   const click = function (e) {
     if (e.target.classList.contains("new-task")) {
       addTaskForm();
@@ -116,6 +131,8 @@ const UI = (() => {
       createNewTask(e);
     } else if (e.target.classList.contains("new-task-cancel")) {
       cancelTaskForm(e);
+    } else if (e.target.classList.contains("task-done")) {
+      toggleTaskDone(e);
     }
   };
   body.addEventListener("click", click);
