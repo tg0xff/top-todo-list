@@ -45,6 +45,11 @@ input[type="text"] {
   padding: 5px;
 }
 
+.new-task {
+  display: grid;
+  place-items: center;
+}
+
 .task {
   margin: 10px 0;
 }
