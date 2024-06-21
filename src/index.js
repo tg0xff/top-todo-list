@@ -125,7 +125,7 @@ const UI = (() => {
   const deleteTask = (e) => {
     const task = findParentElement(e, "task");
     const taskId = task.getAttribute("data-id");
-    Storage.storage.todos[taskId] = null;
+    Storage.deleteTask(taskId);
     task.remove();
   };
   const click = function (e) {
@@ -183,9 +183,12 @@ class Storage {
     return todoId;
   }
   static toggleTodo(id) {
-    Storage.storage.todos[id].toggleDone();
+    this.storage.todos[id].toggleDone();
   }
   static isTaskDone(id) {
-    return Storage.storage.todos[id].done;
+    return this.storage.todos[id].done;
+  }
+  static deleteTask(id) {
+    this.storage.todos[id] = null;
   }
 }
