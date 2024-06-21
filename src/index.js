@@ -129,16 +129,18 @@ const UI = (() => {
     task.remove();
   };
   const click = function (e) {
-    if (e.target.classList.contains("new-task")) {
-      addTaskForm();
-    } else if (e.target.classList.contains("new-task-ok")) {
-      createNewTask(e);
-    } else if (e.target.classList.contains("new-task-cancel")) {
-      cancelTaskForm(e);
-    } else if (e.target.classList.contains("task-done")) {
-      toggleTaskDone(e);
-    } else if (e.target.classList.contains("task-delete")) {
-      deleteTask(e);
+    const classes = {
+      "new-task": addTaskForm,
+      "new-task-ok": createNewTask,
+      "new-task-cancel": cancelTaskForm,
+      "task-done": toggleTaskDone,
+      "task-delete": deleteTask,
+    };
+    for (const className in classes) {
+      if (e.target.classList.contains(className)) {
+        classes[className](e);
+        return;
+      }
     }
   };
   body.addEventListener("click", click);
