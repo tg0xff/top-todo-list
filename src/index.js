@@ -180,6 +180,9 @@ class Storage {
   static newTodo(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
     const todoId = this.storage.todos.push(todoItem) - 1;
+    if (nestedLvl === 0) {
+      this.storage.topLvl.push(todoId);
+    }
     return todoId;
   }
   static toggleTodo(id) {
