@@ -114,8 +114,8 @@ const UI = (() => {
     const task = findParentElement(e, "task");
     const title = task.querySelector(".task-title");
     const taskId = task.getAttribute("data-id");
-    Storage.storage.todos[taskId].toggleDone();
-    const doneState = Storage.storage.todos[taskId].done;
+    Storage.toggleTodo(taskId);
+    const doneState = Storage.isTaskDone(taskId);
     if (doneState) {
       title.classList.add("done");
     } else {
@@ -182,5 +182,11 @@ class Storage {
     const todoItem = new Todo(title, nestedLvl);
     const todoId = this.storage.todos.push(todoItem) - 1;
     return todoId;
+  }
+  static toggleTodo(id) {
+    Storage.storage.todos[id].toggleDone();
+  }
+  static isTaskDone(id) {
+    return Storage.storage.todos[id].done;
   }
 }
