@@ -177,7 +177,6 @@ class Storage {
     todos: [],
     topLvl: [],
   };
-  static topLvl = [];
   static newTodo(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
     const todoId = this.storage.todos.push(todoItem) - 1;
