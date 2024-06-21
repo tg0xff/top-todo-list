@@ -75,11 +75,15 @@ const UI = (() => {
     span.appendChild(deleteTask);
     return span;
   };
-  const createNewTask = (e) => {
-    let form = e.target.parentNode;
+  const findParentElement = (e, className) => {
+    let task = e.target.parentNode;
     do {
-      form = form.parentNode;
-    } while (!form.classList.contains("new-task-form"));
+      task = task.parentNode;
+    } while (!task.classList.contains(className));
+    return task;
+  };
+  const createNewTask = (e) => {
+    const form = findParentElement(e, "new-task-form");
     const task = form.parentNode;
     const titleInput = form.querySelector("input");
     const taskId = Storage.newTodo(titleInput.value, 0);
@@ -103,17 +107,11 @@ const UI = (() => {
     task.appendChild(taskHeader);
   };
   const cancelTaskForm = (e) => {
-    let task = e.target.parentNode;
-    do {
-      task = task.parentNode;
-    } while (task.className !== "task");
+    const task = findParentElement(e, "task");
     task.remove();
   };
   const toggleTaskDone = (e) => {
-    let task = e.target.parentNode;
-    do {
-      task = task.parentNode;
-    } while (!task.classList.contains("task"));
+    const task = findParentElement(e, "task");
     const title = task.querySelector(".task-title");
     const taskId = task.getAttribute("data-id");
     Storage.storage.todos[taskId].toggleDone();
@@ -125,10 +123,7 @@ const UI = (() => {
     }
   };
   const deleteTask = (e) => {
-    let task = e.target.parentNode;
-    do {
-      task = task.parentNode;
-    } while (!task.classList.contains("task"));
+    const task = findParentElement(e, "task");
     const taskId = task.getAttribute("data-id");
     Storage.storage.todos[taskId] = null;
     task.remove();
