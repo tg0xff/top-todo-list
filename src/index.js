@@ -124,6 +124,15 @@ const UI = (() => {
       title.classList.remove("done");
     }
   };
+  const deleteTask = (e) => {
+    let task = e.target.parentNode;
+    do {
+      task = task.parentNode;
+    } while (!task.classList.contains("task"));
+    const taskId = task.getAttribute("data-id");
+    Storage.storage.todos[taskId] = null;
+    task.remove();
+  };
   const click = function (e) {
     if (e.target.classList.contains("new-task")) {
       addTaskForm();
@@ -133,6 +142,8 @@ const UI = (() => {
       cancelTaskForm(e);
     } else if (e.target.classList.contains("task-done")) {
       toggleTaskDone(e);
+    } else if (e.target.classList.contains("task-delete")) {
+      deleteTask(e);
     }
   };
   body.addEventListener("click", click);
@@ -172,7 +183,7 @@ class Storage {
   static topLvl = [];
   static newTodo(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
-    this.storage.todos.push(todoItem);
-    return todoItem.id;
+    const todoId = this.storage.todos.push(todoItem);
+    return todoId;
   }
 }
