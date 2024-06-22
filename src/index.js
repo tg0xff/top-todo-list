@@ -193,7 +193,7 @@ class Storage {
   }
   static deleteTask(id) {
     this.storage.todos[id] = null;
-    const index = this.storage.topLvl.findIndex(id);
+    const index = this.storage.topLvl.indexOf(id);
     if (index !== -1) {
       this.storage.topLvl.splice(index, 1);
     }
