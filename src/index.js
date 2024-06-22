@@ -6,6 +6,7 @@ import {
   mdiMenuRight,
   mdiCheck,
   mdiDelete,
+  mdiCalendarClock,
 } from "@mdi/js";
 
 const UI = (() => {
@@ -61,17 +62,23 @@ const UI = (() => {
   const createTaskButtons = () => {
     const span = document.createElement("span");
     const done = document.createElement("button");
+    const schedule = document.createElement("button");
     const deleteTask = document.createElement("button");
     span.className = "task-buttons";
     const doneClass = "task-done";
     const doneIcon = makeIconSvg(mdiCheck, 24, doneClass);
     done.className = doneClass;
+    const scheduleClass = "task-schedule";
+    const scheduleIcon = makeIconSvg(mdiCalendarClock, 24, scheduleClass);
+    schedule.className = scheduleClass;
     const deleteTaskClass = "task-delete";
     const deleteTaskIcon = makeIconSvg(mdiDelete, 24, deleteTaskClass);
     deleteTask.className = deleteTaskClass;
     done.appendChild(doneIcon);
+    schedule.appendChild(scheduleIcon);
     deleteTask.appendChild(deleteTaskIcon);
     span.appendChild(done);
+    span.appendChild(schedule);
     span.appendChild(deleteTask);
     return span;
   };
