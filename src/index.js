@@ -44,7 +44,6 @@ const UI = (() => {
     form.classList.add("new-task-form");
     const title = document.createElement("input");
     title.type = "text";
-    title.setAttribute("required", "");
     const btnSize = 24;
     const ok = makeButton("new-task-ok", mdiCheckCircle, btnSize);
     const cancel = makeButton("new-task-cancel", mdiCloseCircle, btnSize);
