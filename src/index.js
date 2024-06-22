@@ -93,15 +93,18 @@ const UI = (() => {
     const taskHeader = document.createElement("span");
     const foldArrow = document.createElement("span");
     const title = document.createElement("span");
+    const scheduled = document.createElement("span");
     taskHeader.classList.add("task-header");
     const foldClass = "task-fold-arrow";
     foldArrow.classList.add(foldClass);
     const foldIcon = makeIconSvg(mdiMenuRight, 18, foldClass);
     title.classList.add("task-title");
     title.textContent = titleInput.value;
+    scheduled.className = "scheduled";
     foldArrow.appendChild(foldIcon);
     taskHeader.appendChild(foldArrow);
     taskHeader.appendChild(title);
+    taskHeader.appendChild(scheduled);
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
     task.appendChild(taskHeader);
