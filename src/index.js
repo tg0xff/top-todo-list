@@ -33,11 +33,7 @@ const UI = (() => {
     return button;
   };
   const newTaskBtn = (() => {
-    const button = document.createElement("button");
-    const btnClass = "new-task";
-    button.classList.add(btnClass);
-    const btnIcon = makeIconSvg(mdiPlusCircle, 24, btnClass);
-    button.appendChild(btnIcon);
+    const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
     return button;
   })();
@@ -49,17 +45,9 @@ const UI = (() => {
     const title = document.createElement("input");
     title.type = "text";
     title.setAttribute("required", "");
-    const ok = document.createElement("button");
-    const okClass = "new-task-ok";
-    ok.classList.add(okClass);
-    const okIcon = makeIconSvg(mdiCheckCircle, 24, okClass);
-    ok.appendChild(okIcon);
-    const cancel = document.createElement("button");
-    const cancelClass = "new-task-cancel";
-    cancel.classList.add(cancelClass);
-    const cancelIcon = makeIconSvg(mdiCloseCircle, 24, cancelClass);
-    cancel.appendChild(cancelIcon);
-
+    const btnSize = 24;
+    const ok = makeButton("new-task-ok", mdiCheckCircle, btnSize);
+    const cancel = makeButton("new-task-cancel", mdiCloseCircle, btnSize);
     form.appendChild(title);
     form.appendChild(ok);
     form.appendChild(cancel);
@@ -68,22 +56,11 @@ const UI = (() => {
   };
   const createTaskButtons = () => {
     const span = document.createElement("span");
-    const done = document.createElement("button");
-    const schedule = document.createElement("button");
-    const deleteTask = document.createElement("button");
     span.className = "task-buttons";
-    const doneClass = "task-done";
-    const doneIcon = makeIconSvg(mdiCheck, 24, doneClass);
-    done.className = doneClass;
-    const scheduleClass = "task-schedule";
-    const scheduleIcon = makeIconSvg(mdiCalendarClock, 24, scheduleClass);
-    schedule.className = scheduleClass;
-    const deleteTaskClass = "task-delete";
-    const deleteTaskIcon = makeIconSvg(mdiDelete, 24, deleteTaskClass);
-    deleteTask.className = deleteTaskClass;
-    done.appendChild(doneIcon);
-    schedule.appendChild(scheduleIcon);
-    deleteTask.appendChild(deleteTaskIcon);
+    const btnSize = 24;
+    const done = makeButton("task-done", mdiCheck, btnSize);
+    const schedule = makeButton("task-schedule", mdiCalendarClock, btnSize);
+    const deleteTask = makeButton("task-delete", mdiDelete, btnSize);
     span.appendChild(done);
     span.appendChild(schedule);
     span.appendChild(deleteTask);
