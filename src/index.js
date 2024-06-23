@@ -28,7 +28,7 @@ const UI = (() => {
   const makeButton = (className, iconData, size) => {
     const button = document.createElement("button");
     button.className = className;
-    const btnIcon  = makeIconSvg(iconData, size, className);
+    const btnIcon = makeIconSvg(iconData, size, className);
     button.appendChild(btnIcon);
     return button;
   };
