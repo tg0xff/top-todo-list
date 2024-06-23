@@ -105,6 +105,10 @@ dialog input[type="text"] {
   text-decoration: line-through;
 }
 
+.scheduled {
+  margin: 0 12px;
+}
+
 dialog {
   border: none;
   border-radius: 8px;
