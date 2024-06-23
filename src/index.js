@@ -121,8 +121,10 @@ const UI = (() => {
     Storage.deleteTask(taskId);
     task.remove();
   };
-  const showScheduleForm = () => {
+  const showScheduleForm = (e) => {
     const dialog = body.querySelector("dialog");
+    const task = findParentElement(e, "task");
+    dialog.setAttribute("data-id", task.getAttribute("data-id"));
     dialog.showModal();
   };
   const toggleHourWidget = (e) => {
