@@ -33,11 +33,11 @@ const UI = (() => {
     return button;
   };
   const findParentElement = (e, className) => {
-    let task = e.target.parentNode;
+    let parent = e.target.parentNode;
     do {
-      task = task.parentNode;
-    } while (!task.classList.contains(className));
-    return task;
+      parent = parent.parentNode;
+    } while (!parent.classList.contains(className));
+    return parent;
   };
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
