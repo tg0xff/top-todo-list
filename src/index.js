@@ -121,6 +121,10 @@ const UI = (() => {
     Storage.deleteTask(taskId);
     task.remove();
   };
+  const showScheduleForm = (e) => {
+    const dialog = body.querySelector("dialog");
+    dialog.showModal();
+  };
   const click = function (e) {
     const classes = {
       "new-task": addTaskForm,
@@ -128,6 +132,7 @@ const UI = (() => {
       "new-task-cancel": cancelTaskForm,
       "task-done": toggleTaskDone,
       "task-delete": deleteTask,
+      "task-schedule": showScheduleForm,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
