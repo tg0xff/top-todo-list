@@ -215,4 +215,7 @@ class Storage {
       this.storage.topLvl.splice(index, 1);
     }
   }
+  static setDate(id, date) {
+    this.storage.todos[id] = new Date(date);
+  }
 }
