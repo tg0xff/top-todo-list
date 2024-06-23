@@ -32,6 +32,13 @@ const UI = (() => {
     button.appendChild(btnIcon);
     return button;
   };
+  const findParentElement = (e, className) => {
+    let task = e.target.parentNode;
+    do {
+      task = task.parentNode;
+    } while (!task.classList.contains(className));
+    return task;
+  };
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
@@ -64,13 +71,6 @@ const UI = (() => {
     const deleteTask = makeButton("task-delete", mdiDelete, btnSize);
     span.appendChild(deleteTask);
     return span;
-  };
-  const findParentElement = (e, className) => {
-    let task = e.target.parentNode;
-    do {
-      task = task.parentNode;
-    } while (!task.classList.contains(className));
-    return task;
   };
   const createNewTask = (e) => {
     const form = findParentElement(e, "new-task-form");
