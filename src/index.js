@@ -140,10 +140,26 @@ const UI = (() => {
     const form = e.target.parentNode.parentNode;
     const dialog = form.parentNode;
     const taskId = dialog.getAttribute("data-id");
-    form.reset();
-    dialog.close();
+    const spanSchedule = body.querySelector(
+      `div[data-id="${taskId}"] .scheduled`,
+    );
+    if (form.reportValidity()) {
+      Storage.setDate(taskId, form.elements["date"].value);
+      if (!form.elements["hour"].disabled) {
+        Storage.setHour(taskId, form.elements["hour"].value);
+      }
+      form.reset();
+      dialog.close();
+      dialog.querySelector("#hour").setAttribute("disabled", "");
+      spanSchedule.textContent = Storage.getDate(taskId);
+    }
   };
   const click = function (e) {
+    switch (e.target.id) {
+      case "set-schedule":
+        submitSchedule(e);
+        return;
+    }
     const classes = {
       "new-task": addTaskForm,
       "new-task-ok": createNewTask,
@@ -168,7 +184,7 @@ class Todo {
   constructor(title, nestedLvl) {
     this.title = title;
     this.description = "";
-    this.dueDate = "";
+    this.dueDate = null;
     this.done = false;
     this.nestedLvl = nestedLvl;
     this.nested = [];
@@ -216,6 +232,15 @@ class Storage {
     }
   }
   static setDate(id, date) {
-    this.storage.todos[id] = new Date(date);
+    this.storage.todos[id].dueDate = new Date(date);
+  }
+  static setHour(id, hour) {
+    let [hours, minutes] = hour.split(":");
+    hours = +hours;
+    minutes = +minutes;
+    this.storage.todos[id].dueDate.setHours(hours, minutes);
+  }
+  static getDate(id) {
+    return this.storage.todos[id].dueDate.toLocaleString();
   }
 }
