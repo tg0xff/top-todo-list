@@ -116,3 +116,9 @@ input[type="date"] {
   appearance: none;
   border: 1px solid #000;
 }
+
+.x-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: end;
+}
