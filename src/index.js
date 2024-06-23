@@ -121,7 +121,7 @@ const UI = (() => {
     Storage.deleteTask(taskId);
     task.remove();
   };
-  const showScheduleForm = (e) => {
+  const showScheduleForm = () => {
     const dialog = body.querySelector("dialog");
     dialog.showModal();
   };
