@@ -125,6 +125,14 @@ const UI = (() => {
     const dialog = body.querySelector("dialog");
     dialog.showModal();
   };
+  const toggleHourWidget = (e) => {
+    const input = body.querySelector("#hour");
+    if (e.target.checked) {
+      input.removeAttribute("disabled");
+    } else {
+      input.setAttribute("disabled", "");
+    }
+  };
   const click = function (e) {
     const classes = {
       "new-task": addTaskForm,
@@ -142,6 +150,7 @@ const UI = (() => {
     }
   };
   body.addEventListener("click", click);
+  body.querySelector("#set-hour").addEventListener("change", toggleHourWidget);
 })();
 
 class Todo {
