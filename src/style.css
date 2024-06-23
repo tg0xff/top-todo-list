@@ -109,3 +109,10 @@ dialog {
 form > div {
   margin: 16px 0;
 }
+
+input[type="date"] {
+  font-family: inherit;
+  font-size: inherit;
+  appearance: none;
+  border: 1px solid #000;
+}
