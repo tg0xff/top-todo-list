@@ -133,6 +133,13 @@ const UI = (() => {
       input.setAttribute("disabled", "");
     }
   };
+  const submitSchedule = (e) => {
+    e.preventDefault();
+    const form = e.target.parentNode.parentNode;
+    const dialog = form.parentNode;
+    form.reset();
+    dialog.close();
+  };
   const click = function (e) {
     const classes = {
       "new-task": addTaskForm,
