@@ -43,7 +43,14 @@ input[type="text"] {
   border: 1px solid #000;
   border-radius: 5px;
   padding: 5px;
+}
+
+.task input[type="text"] {
   width: 350px;
+}
+
+dialog input[type="text"] {
+  width: 80px;
 }
 
 .new-task {
