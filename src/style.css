@@ -126,3 +126,9 @@ input[type="date"] {
   grid-template-columns: 1fr;
   justify-items: end;
 }
+
+form > div:last-child {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: end;
+}
