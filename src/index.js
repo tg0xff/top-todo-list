@@ -139,6 +139,7 @@ const UI = (() => {
     e.preventDefault();
     const form = e.target.parentNode.parentNode;
     const dialog = form.parentNode;
+    const taskId = dialog.getAttribute("data-id");
     form.reset();
     dialog.close();
   };
