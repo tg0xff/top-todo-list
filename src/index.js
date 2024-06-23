@@ -40,28 +40,28 @@ const UI = (() => {
   const addTaskForm = () => {
     const task = document.createElement("div");
     task.classList.add("task");
+    body.insertBefore(task, newTaskBtn);
     const form = document.createElement("span");
     form.classList.add("new-task-form");
+    task.appendChild(form);
     const title = document.createElement("input");
     title.type = "text";
+    form.appendChild(title);
     const btnSize = 24;
     const ok = makeButton("new-task-ok", mdiCheckCircle, btnSize);
-    const cancel = makeButton("new-task-cancel", mdiCloseCircle, btnSize);
-    form.appendChild(title);
     form.appendChild(ok);
+    const cancel = makeButton("new-task-cancel", mdiCloseCircle, btnSize);
     form.appendChild(cancel);
-    task.appendChild(form);
-    body.insertBefore(task, newTaskBtn);
   };
   const createTaskButtons = () => {
     const span = document.createElement("span");
     span.className = "task-buttons";
     const btnSize = 24;
     const done = makeButton("task-done", mdiCheck, btnSize);
-    const schedule = makeButton("task-schedule", mdiCalendarClock, btnSize);
-    const deleteTask = makeButton("task-delete", mdiDelete, btnSize);
     span.appendChild(done);
+    const schedule = makeButton("task-schedule", mdiCalendarClock, btnSize);
     span.appendChild(schedule);
+    const deleteTask = makeButton("task-delete", mdiDelete, btnSize);
     span.appendChild(deleteTask);
     return span;
   };
@@ -81,23 +81,23 @@ const UI = (() => {
     form.remove();
 
     const taskHeader = document.createElement("span");
+    taskHeader.className = "task-header";
+    task.appendChild(taskHeader);
     const foldArrow = document.createElement("span");
-    const title = document.createElement("span");
-    const scheduled = document.createElement("span");
-    taskHeader.classList.add("task-header");
     const foldClass = "task-fold-arrow";
     foldArrow.classList.add(foldClass);
     const foldIcon = makeIconSvg(mdiMenuRight, 18, foldClass);
-    title.classList.add("task-title");
-    title.textContent = titleInput.value;
-    scheduled.className = "scheduled";
     foldArrow.appendChild(foldIcon);
     taskHeader.appendChild(foldArrow);
+    const title = document.createElement("span");
+    title.className = "task-title";
+    title.textContent = titleInput.value;
     taskHeader.appendChild(title);
+    const scheduled = document.createElement("span");
+    scheduled.className = "scheduled";
     taskHeader.appendChild(scheduled);
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
-    task.appendChild(taskHeader);
   };
   const cancelTaskForm = (e) => {
     const task = findParentElement(e, "task");
