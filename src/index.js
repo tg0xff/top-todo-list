@@ -154,10 +154,20 @@ const UI = (() => {
       spanSchedule.textContent = Storage.getDate(taskId);
     }
   };
+  const closeSchedule = (e) => {
+    const dialog = findParentElement(e, "schedule-menu");
+    const form = dialog.querySelector("form");
+    form.reset();
+    dialog.close();
+    dialog.querySelector("#hour").setAttribute("disabled", "");
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
         submitSchedule(e);
+        return;
+      case "close-schedule-form":
+        closeSchedule(e);
         return;
     }
     const classes = {
@@ -166,6 +176,7 @@ const UI = (() => {
       "new-task-cancel": cancelTaskForm,
       "task-done": toggleTaskDone,
       "task-delete": deleteTask,
+      "task-schedule": showScheduleForm,
       "task-schedule": showScheduleForm,
     };
     for (const className in classes) {
