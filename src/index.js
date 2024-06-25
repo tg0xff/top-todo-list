@@ -167,6 +167,9 @@ const UI = (() => {
   const taskEditTitleBtn = (e) => {
     const taskHeader = findParentElement(e, "task-header");
     const title = taskHeader.querySelector(".task-title");
+    if (!title) {
+      return;
+    }
     title.remove();
     const scheduled = taskHeader.querySelector(".scheduled");
     const textWidget = document.createElement("input");
