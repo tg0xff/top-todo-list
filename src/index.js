@@ -186,6 +186,7 @@ const UI = (() => {
     const okTitleChange = taskHeader.querySelector(".ok-title-change");
     okTitleChange.remove();
     const title = document.createElement("span");
+    title.className = "task-title";
     title.textContent = Storage.getTitle(taskId);
     taskHeader.insertBefore(title, scheduled);
   };
