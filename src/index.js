@@ -175,6 +175,20 @@ const UI = (() => {
     const applyTitleBtn = makeButton("ok-title-change", mdiCheck, 24)
     taskHeader.insertBefore(applyTitleBtn, scheduled);
   };
+  const okTitleChangeBtn = (e) => {
+    const taskHeader = findParentElement(e, "task-header");
+    const task = taskHeader.parentElement;
+    const taskId = task.getAttribute("data-id");
+    const scheduled = taskHeader.querySelector(".scheduled");
+    const textWidget = taskHeader.querySelector('input[type="text"]');
+    Storage.changeTitle(taskId, textWidget.value);
+    textWidget.remove();
+    const okTitleChange = taskHeader.querySelector(".ok-title-change");
+    okTitleChange.remove();
+    const title = document.createElement("span");
+    title.textContent = Storage.getTitle(taskId);
+    taskHeader.insertBefore(title, scheduled);
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
