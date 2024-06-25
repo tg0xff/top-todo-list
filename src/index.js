@@ -283,4 +283,10 @@ class Storage {
   static getDate(id) {
     return this.storage.todos[id].dueDate.toLocaleString();
   }
+  static changeTitle(id, title) {
+    this.storage.todos[id].title = title;
+  }
+  static getTitle(id) {
+    return this.storage.todos[id].title;
+  }
 }
