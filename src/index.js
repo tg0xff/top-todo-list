@@ -45,7 +45,7 @@ const UI = (() => {
     body.appendChild(button);
     return button;
   })();
-  const newTaskBtn = () => {
+  const newTaskFormBtn = () => {
     const task = document.createElement("div");
     task.classList.add("task");
     body.insertBefore(task, newTaskBtn);
@@ -199,7 +199,7 @@ const UI = (() => {
         return;
     }
     const classes = {
-      "new-task": newTaskBtn,
+      "new-task": newTaskFormBtn,
       "new-task-ok": newTaskOkBtn,
       "new-task-cancel": newTaskCancelBtn,
       "task-done": taskDoneBtn,
