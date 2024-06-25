@@ -206,6 +206,7 @@ const UI = (() => {
       "task-delete": taskDeleteBtn,
       "task-schedule": taskScheduleBtn,
       "task-edit-title": taskEditTitleBtn,
+      "ok-title-change": okTitleChangeBtn,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
