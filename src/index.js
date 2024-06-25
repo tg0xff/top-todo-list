@@ -176,8 +176,8 @@ const UI = (() => {
     taskHeader.insertBefore(applyTitleBtn, scheduled);
   };
   const okTitleChangeBtn = (e) => {
-    const taskHeader = findParentElement(e, "task-header");
-    const task = taskHeader.parentElement;
+    const task = findParentElement(e, "task");
+    const taskHeader = task.querySelector(".task-header");
     const taskId = task.getAttribute("data-id");
     const scheduled = taskHeader.querySelector(".scheduled");
     const textWidget = taskHeader.querySelector('input[type="text"]');
