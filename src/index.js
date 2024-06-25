@@ -164,6 +164,17 @@ const UI = (() => {
     dialog.close();
     dialog.querySelector("#hour").setAttribute("disabled", "");
   };
+  const editTitleBtn = (e) => {
+    const taskHeader = findParentElement(e, "task-header");
+    const title = taskHeader.querySelector(".task-title");
+    title.remove();
+    const scheduled = taskHeader.querySelector(".scheduled");
+    const textWidget = document.createElement("input");
+    textWidget.type = "text";
+    taskHeader.insertBefore(textWidget, scheduled);
+    const applyTitleBtn = makeButton("ok-title-change", mdiCheck, 24)
+    taskHeader.insertBefore(applyTitleBtn, scheduled);
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -180,6 +191,7 @@ const UI = (() => {
       "task-done": toggleTaskDone,
       "task-delete": deleteTask,
       "task-schedule": showScheduleForm,
+      "task-edit-title": editTitleBtn,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
