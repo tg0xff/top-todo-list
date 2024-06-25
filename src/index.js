@@ -138,7 +138,7 @@ const UI = (() => {
       input.setAttribute("disabled", "");
     }
   };
-  const submitSchedule = (e) => {
+  const setScheduleBtn = (e) => {
     e.preventDefault();
     const form = e.target.parentNode.parentNode;
     const dialog = form.parentNode;
@@ -157,7 +157,7 @@ const UI = (() => {
       spanSchedule.textContent = Storage.getDate(taskId);
     }
   };
-  const closeSchedule = (e) => {
+  const closeScheduleFormBtn = (e) => {
     const dialog = findParentElement(e, "schedule-menu");
     const form = dialog.querySelector("form");
     form.reset();
@@ -178,10 +178,10 @@ const UI = (() => {
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
-        submitSchedule(e);
+        setScheduleBtn(e);
         return;
       case "close-schedule-form":
-        closeSchedule(e);
+        closeScheduleFormBtn(e);
         return;
     }
     const classes = {
