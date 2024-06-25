@@ -7,6 +7,7 @@ import {
   mdiCheck,
   mdiDelete,
   mdiCalendarClock,
+  mdiPencil,
 } from "@mdi/js";
 
 const UI = (() => {
@@ -68,6 +69,8 @@ const UI = (() => {
     span.appendChild(done);
     const schedule = makeButton("task-schedule", mdiCalendarClock, btnSize);
     span.appendChild(schedule);
+    const editTaskTitle = makeButton("task-edit-title", mdiPencil, btnSize);
+    span.appendChild(editTaskTitle);
     const deleteTask = makeButton("task-delete", mdiDelete, btnSize);
     span.appendChild(deleteTask);
     return span;
