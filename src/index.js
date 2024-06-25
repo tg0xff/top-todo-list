@@ -45,7 +45,7 @@ const UI = (() => {
     body.appendChild(button);
     return button;
   })();
-  const addTaskForm = () => {
+  const newTaskBtn = () => {
     const task = document.createElement("div");
     task.classList.add("task");
     body.insertBefore(task, newTaskBtn);
@@ -75,7 +75,7 @@ const UI = (() => {
     span.appendChild(deleteTask);
     return span;
   };
-  const createNewTask = (e) => {
+  const newTaskOkBtn = (e) => {
     const form = findParentElement(e, "new-task-form");
     const task = form.parentNode;
     const titleInput = form.querySelector("input");
@@ -102,11 +102,11 @@ const UI = (() => {
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
   };
-  const cancelTaskForm = (e) => {
+  const newTaskCancelBtn = (e) => {
     const task = findParentElement(e, "task");
     task.remove();
   };
-  const toggleTaskDone = (e) => {
+  const taskDoneBtn = (e) => {
     const task = findParentElement(e, "task");
     const title = task.querySelector(".task-title");
     const taskId = task.getAttribute("data-id");
@@ -118,13 +118,13 @@ const UI = (() => {
       title.classList.remove("done");
     }
   };
-  const deleteTask = (e) => {
+  const taskDeleteBtn = (e) => {
     const task = findParentElement(e, "task");
     const taskId = task.getAttribute("data-id");
     Storage.deleteTask(taskId);
     task.remove();
   };
-  const showScheduleForm = (e) => {
+  const taskScheduleBtn = (e) => {
     const dialog = body.querySelector("dialog");
     const task = findParentElement(e, "task");
     dialog.setAttribute("data-id", task.getAttribute("data-id"));
@@ -164,7 +164,7 @@ const UI = (() => {
     dialog.close();
     dialog.querySelector("#hour").setAttribute("disabled", "");
   };
-  const editTitleBtn = (e) => {
+  const taskEditTitleBtn = (e) => {
     const taskHeader = findParentElement(e, "task-header");
     const title = taskHeader.querySelector(".task-title");
     title.remove();
@@ -185,13 +185,13 @@ const UI = (() => {
         return;
     }
     const classes = {
-      "new-task": addTaskForm,
-      "new-task-ok": createNewTask,
-      "new-task-cancel": cancelTaskForm,
-      "task-done": toggleTaskDone,
-      "task-delete": deleteTask,
-      "task-schedule": showScheduleForm,
-      "task-edit-title": editTitleBtn,
+      "new-task": newTaskBtn,
+      "new-task-ok": newTaskOkBtn,
+      "new-task-cancel": newTaskCancelBtn,
+      "task-done": taskDoneBtn,
+      "task-delete": taskDeleteBtn,
+      "task-schedule": taskScheduleBtn,
+      "task-edit-title": taskEditTitleBtn,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
