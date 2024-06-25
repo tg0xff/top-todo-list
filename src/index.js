@@ -180,7 +180,6 @@ const UI = (() => {
       "task-done": toggleTaskDone,
       "task-delete": deleteTask,
       "task-schedule": showScheduleForm,
-      "task-schedule": showScheduleForm,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
