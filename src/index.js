@@ -248,12 +248,14 @@ const UI = (() => {
   };
   const taskEditDescriptionBtn = (e) => {
     const task = findParentElement(e, "task");
+    const taskId = task.getAttribute("data-id");
     const contents = task.querySelector(".task-contents");
     const nested = contents.querySelector(".nested");
     contents.querySelector(".task-description").remove()
     contents.querySelector(".task-description-buttons").remove()
     const textarea = document.createElement("textarea");
     textarea.className = "task-description";
+    textarea.textContent = Storage.getDescription(taskId);
     contents.insertBefore(textarea, nested);
     const descButtons = document.createElement("div");
     descButtons.className = "task-description-buttons";
