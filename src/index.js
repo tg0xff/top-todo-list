@@ -53,8 +53,8 @@ const UI = (() => {
   const calcTaskIndent = (task) => {
     const taskId = task.getAttribute("data-id");
     const indentMultiplier = Storage.getNestedLvl(taskId) + 1;
-    const style = getComputedStyle(document.body);
-    const indentMargin = Number(style.getPropertyValue("--task-indentation").slice(0, -2)) * indentMultiplier;
+    const taskIndentVar = getComputedStyle(document.body).getPropertyValue("--task-indentation");
+    const indentMargin = Number(taskIndentVar.slice(0, -2)) * indentMultiplier;
     return `${indentMargin}px`;
   };
   const newTaskBtn = (() => {
