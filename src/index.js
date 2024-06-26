@@ -91,7 +91,7 @@ const UI = (() => {
     taskHeader.appendChild(title);
     const scheduled = document.createElement("span");
     scheduled.className = "scheduled";
-    scheduled.textContent = Storage.getTitle(id) ?? "";
+    scheduled.textContent = Storage.getDate(id) ?? "";
     taskHeader.appendChild(scheduled);
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
@@ -403,7 +403,8 @@ class Storage {
     this.storage.todos[id].dueDate.setHours(hours, minutes);
   }
   static getDate(id) {
-    return this.storage.todos[id].dueDate.toLocaleString();
+    const date = this.storage.todos[id].dueDate;
+    if (date) return date.toLocaleString();
   }
   static changeTitle(id, title) {
     this.storage.todos[id].title = title;
