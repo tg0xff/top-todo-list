@@ -50,6 +50,13 @@ const UI = (() => {
     foldIcon.appendChild(taskFoldIcon);
     return foldIcon;
   };
+  const calcTaskIndent = (task) => {
+    const taskId = task.getAttribute("data-id");
+    const indentMultiplier = Storage.getNestedLvl(taskId) + 1;
+    const style = getComputedStyle(document.body);
+    const indentMargin = style.getPropertyValue("--task-indentation") * indentMultiplier;
+    return `${indentMargin}px`;
+  };
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
@@ -334,5 +341,8 @@ class Storage {
   }
   static getDescription(id) {
     return this.storage.todos[id].description;
+  }
+  static getNestedLvl(id) {
+    return this.storage.todos[id].nestedLvl;
   }
 }
