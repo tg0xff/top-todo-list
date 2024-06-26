@@ -95,6 +95,12 @@ const UI = (() => {
     task.appendChild(taskHeader);
     return task;
   }
+  const showNestedTasks = (container, ids) => {
+    for (const id of ids) {
+      const task = makeTaskDiv(id);
+      container.appendChild(task);
+    }
+  };
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
@@ -398,5 +404,8 @@ class Storage {
   }
   static getNestedLvl(id) {
     return this.storage.todos[id].nestedLvl;
+  }
+  static getNestedArr() {
+    return this.storage.todos[id].nested;
   }
 }
