@@ -9,6 +9,7 @@ import {
   mdiCalendarClock,
   mdiPencil,
   mdiMenuDown,
+  mdiPlusCircleMultiple,
 } from "@mdi/js";
 
 const UI = (() => {
@@ -266,6 +267,8 @@ const UI = (() => {
     showNestedTasks(nested, Storage.getNestedArr(taskId));
     contents.appendChild(nested);
     addDescriptionElements(task);
+    const addNestedTask = makeButton("add-nested-task", mdiPlusCircleMultiple, 24);
+    contents.appendChild(addNestedTask);
   };
   const taskFoldArrow = (e) => {
     const task = findParentElement(e, "task");
