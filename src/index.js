@@ -54,7 +54,7 @@ const UI = (() => {
     const taskId = task.getAttribute("data-id");
     const indentMultiplier = Storage.getNestedLvl(taskId) + 1;
     const style = getComputedStyle(document.body);
-    const indentMargin = style.getPropertyValue("--task-indentation") * indentMultiplier;
+    const indentMargin = Number(style.getPropertyValue("--task-indentation").slice(0, -2)) * indentMultiplier;
     return `${indentMargin}px`;
   };
   const newTaskBtn = (() => {
