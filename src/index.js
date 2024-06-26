@@ -287,7 +287,11 @@ const UI = (() => {
     showNestedTasks(nested, Storage.getNestedArr(taskId));
     contents.appendChild(nested);
     addDescriptionElements(task);
-    const addNestedTask = makeButton("add-nested-task", mdiPlusCircleMultiple, 24);
+    const addNestedTask = makeButton(
+      "add-nested-task",
+      mdiPlusCircleMultiple,
+      24,
+    );
     contents.appendChild(addNestedTask);
   };
   const taskFoldArrow = (e) => {
@@ -418,11 +422,11 @@ class Storage {
     return this.storage.todos[id].done;
   }
   static deleteTask(id) {
-    this.storage.todos[id] = null;
-    const index = this.storage.topLvl.indexOf(id);
-    if (index !== -1) {
+    if (this.storage.todos[id].nestedLvl === 0) {
+      const index = this.storage.topLvl.indexOf(id);
       this.storage.topLvl.splice(index, 1);
     }
+    this.storage.todos[id] = null;
   }
   static setDate(id, date) {
     this.storage.todos[id].dueDate = new Date(date);
