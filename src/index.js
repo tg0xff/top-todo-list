@@ -8,6 +8,7 @@ import {
   mdiDelete,
   mdiCalendarClock,
   mdiPencil,
+  mdiMenuDown,
 } from "@mdi/js";
 
 const UI = (() => {
@@ -196,6 +197,16 @@ const UI = (() => {
   const taskUnfoldArrow = (e) => {
     const task = findParentElement(e, "task");
     const taskId = task.getAttribute("data-id");
+
+    const taskHeader = task.querySelector(".task-header");
+    const taskTitle = taskHeader.querySelector(".task-title");
+    taskHeader.querySelector(".task-unfold-arrow").remove();
+    const taskFold = document.createElement("span");
+    taskFold.className = "task-fold-arrow";
+    taskHeader.insertBefore(taskFold, taskTitle);
+    const taskFoldIcon = makeIconSvg(mdiMenuDown, 18, "task-fold-arrow");
+    taskFold.appendChild(taskFoldIcon);
+
     const contents = document.createElement("div");
     contents.className = "task-contents";
     task.appendChild(contents);
