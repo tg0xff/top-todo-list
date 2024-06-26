@@ -87,6 +87,13 @@ const UI = (() => {
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
   }
+  const makeTaskDiv = (id) => {
+    const task = document.createElement("div");
+    task.setAttribute("data-id", id);
+    const taskHeader = makeTaskHeader(id);
+    task.appendChild(taskHeader);
+    return task;
+  }
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
