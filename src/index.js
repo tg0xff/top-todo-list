@@ -293,6 +293,7 @@ const UI = (() => {
       "task-unfold-arrow": taskUnfoldArrow,
       "task-fold-arrow": taskFoldArrow,
       "task-edit-description": taskEditDescriptionBtn,
+      "task-apply-description": taskApplyDescriptionBtn,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
