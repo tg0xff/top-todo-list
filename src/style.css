@@ -138,6 +138,7 @@ form > div:last-child {
   outline: none;
   font-family: inherit;
   font-size: inherit;
+  line-height: inherit;
   width: 75ch;
   height: 300px;
   padding: 4px;
