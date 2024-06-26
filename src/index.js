@@ -450,4 +450,8 @@ class Storage {
   static pushNested(parentId, childId) {
     this.storage.todos[parentId].nested.push(childId);
   }
+  static deleteNested(parentId, childId) {
+    const index = this.storage.todos[parentId].nested.indexOf(childId);
+    this.storage.todos[parentId].nested.splice(index, 1);
+  }
 }
