@@ -86,10 +86,9 @@ dialog input[type="text"] {
 }
 
 .task-buttons {
-  display: inline-grid;
-  grid-template-columns: repeat(4, auto);
+  display: inline-flex;
   gap: 8px;
-  place-items: center;
+  align-items: center;
 }
 
 .task-buttons > * {
