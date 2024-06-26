@@ -71,14 +71,14 @@ const UI = (() => {
     const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
     descButtons.appendChild(editDescriptionBtn);
   };
-  const makeTaskHeader = (id, titleContent) => {
+  const makeTaskHeader = (id) => {
     const taskHeader = document.createElement("span");
     taskHeader.className = "task-header";
     const foldArrow = makeFoldIcon(false);
     taskHeader.appendChild(foldArrow);
     const title = document.createElement("span");
     title.className = "task-title";
-    title.textContent = titleContent ?? Storage.getTitle(id);
+    title.textContent = Storage.getTitle(id);
     taskHeader.appendChild(title);
     const scheduled = document.createElement("span");
     scheduled.className = "scheduled";
@@ -129,7 +129,7 @@ const UI = (() => {
     const taskId = Storage.newTodo(titleInput.value, 0);
     task.setAttribute("data-id", taskId);
     form.remove();
-    const taskHeader = makeTaskHeader(taskId, titleInput.value);
+    const taskHeader = makeTaskHeader(taskId);
     task.appendChild(taskHeader);
   };
   const newTaskCancelBtn = (e) => {
