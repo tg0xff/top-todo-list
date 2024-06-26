@@ -71,6 +71,22 @@ const UI = (() => {
     const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
     descButtons.appendChild(editDescriptionBtn);
   };
+  const makeTaskHeader = (id, titleContent) => {
+    const taskHeader = document.createElement("span");
+    taskHeader.className = "task-header";
+    const foldArrow = makeFoldIcon(false);
+    taskHeader.appendChild(foldArrow);
+    const title = document.createElement("span");
+    title.className = "task-title";
+    title.textContent = titleContent ?? Storage.getTitle(id);
+    taskHeader.appendChild(title);
+    const scheduled = document.createElement("span");
+    scheduled.className = "scheduled";
+    scheduled.textContent = Storage.getTitle(id) ?? "";
+    taskHeader.appendChild(scheduled);
+    const taskButtons = createTaskButtons();
+    taskHeader.appendChild(taskButtons);
+  }
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
@@ -113,21 +129,8 @@ const UI = (() => {
     const taskId = Storage.newTodo(titleInput.value, 0);
     task.setAttribute("data-id", taskId);
     form.remove();
-
-    const taskHeader = document.createElement("span");
-    taskHeader.className = "task-header";
+    const taskHeader = makeTaskHeader(taskId, titleInput.value);
     task.appendChild(taskHeader);
-    const foldArrow = makeFoldIcon(false);
-    taskHeader.appendChild(foldArrow);
-    const title = document.createElement("span");
-    title.className = "task-title";
-    title.textContent = titleInput.value;
-    taskHeader.appendChild(title);
-    const scheduled = document.createElement("span");
-    scheduled.className = "scheduled";
-    taskHeader.appendChild(scheduled);
-    const taskButtons = createTaskButtons();
-    taskHeader.appendChild(taskButtons);
   };
   const newTaskCancelBtn = (e) => {
     const task = findParentElement(e, "task");
