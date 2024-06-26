@@ -256,6 +256,16 @@ const UI = (() => {
     const applyDescriptionBtn = makeButton("task-apply-description", mdiCheck, 24);
     descButtons.appendChild(applyDescriptionBtn);
   };
+  const taskApplyDescriptionBtn = (e) => {
+    const task = findParentElement(e, "task");
+    const taskId = task.getAttribute("data-id");
+    const contents = task.querySelector(".task-contents");
+    const textarea = contents.querySelector("textarea");
+    Storage.setDescription(taskId, textarea.value);
+    textarea.remove();
+    contents.querySelector(".task-description-buttons").remove();
+    addDescriptionElements(task);
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -361,6 +371,9 @@ class Storage {
   }
   static getDescription(id) {
     return this.storage.todos[id].description;
+  }
+  static setDescription(id, description) {
+    this.storage.todos[id].description = description;
   }
   static getNestedLvl(id) {
     return this.storage.todos[id].nestedLvl;
