@@ -53,22 +53,31 @@ const UI = (() => {
   const calcTaskIndent = (task) => {
     const taskId = task.getAttribute("data-id");
     const indentMultiplier = Storage.getNestedLvl(taskId) + 1;
-    const taskIndentVar = getComputedStyle(document.body).getPropertyValue("--task-indentation");
+    const taskIndentVar = getComputedStyle(document.body).getPropertyValue(
+      "--task-indentation",
+    );
     const indentMargin = Number(taskIndentVar.slice(0, -2)) * indentMultiplier;
     return `${indentMargin}px`;
   };
   const addDescriptionElements = (task) => {
     const taskId = task.getAttribute("data-id");
     const contents = task.querySelector(".task-contents");
-    const nested = contents.querySelector(".nested")
+    const nested = contents.querySelector(".nested");
     const description = document.createElement("div");
     description.className = "task-description";
-    description.innerHTML = Storage.getDescription(taskId).replaceAll("\n", "<br>");
+    description.innerHTML = Storage.getDescription(taskId).replaceAll(
+      "\n",
+      "<br>",
+    );
     contents.insertBefore(description, nested);
     const descButtons = document.createElement("div");
     descButtons.className = "task-description-buttons";
     contents.insertBefore(descButtons, nested);
-    const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
+    const editDescriptionBtn = makeButton(
+      "task-edit-description",
+      mdiPencil,
+      24,
+    );
     descButtons.appendChild(editDescriptionBtn);
   };
   const makeTaskHeader = (id) => {
@@ -87,14 +96,14 @@ const UI = (() => {
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
     return taskHeader;
-  }
+  };
   const makeTaskDiv = (id) => {
     const task = document.createElement("div");
     task.setAttribute("data-id", id);
     const taskHeader = makeTaskHeader(id);
     task.appendChild(taskHeader);
     return task;
-  }
+  };
   const showNestedTasks = (container, ids) => {
     for (const id of ids) {
       const task = makeTaskDiv(id);
@@ -221,7 +230,7 @@ const UI = (() => {
     textWidget.type = "text";
     textWidget.value = Storage.getTitle(taskId);
     taskHeader.insertBefore(textWidget, scheduled);
-    const applyTitleBtn = makeButton("ok-title-change", mdiCheck, 24)
+    const applyTitleBtn = makeButton("ok-title-change", mdiCheck, 24);
     taskHeader.insertBefore(applyTitleBtn, scheduled);
   };
   const okTitleChangeBtn = (e) => {
@@ -272,8 +281,8 @@ const UI = (() => {
     const taskId = task.getAttribute("data-id");
     const contents = task.querySelector(".task-contents");
     const nested = contents.querySelector(".nested");
-    contents.querySelector(".task-description").remove()
-    contents.querySelector(".task-description-buttons").remove()
+    contents.querySelector(".task-description").remove();
+    contents.querySelector(".task-description-buttons").remove();
     const textarea = document.createElement("textarea");
     textarea.className = "task-description";
     textarea.textContent = Storage.getDescription(taskId);
@@ -281,7 +290,11 @@ const UI = (() => {
     const descButtons = document.createElement("div");
     descButtons.className = "task-description-buttons";
     contents.insertBefore(descButtons, nested);
-    const applyDescriptionBtn = makeButton("task-apply-description", mdiCheck, 24);
+    const applyDescriptionBtn = makeButton(
+      "task-apply-description",
+      mdiCheck,
+      24,
+    );
     descButtons.appendChild(applyDescriptionBtn);
   };
   const taskApplyDescriptionBtn = (e) => {
