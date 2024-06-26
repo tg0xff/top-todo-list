@@ -79,17 +79,13 @@ dialog input[type="text"] {
   place-items: center;
 }
 
-.task-fold-arrow {
-  margin-right: 4px;
-}
-
 .task-header {
   display: inline-flex;
   align-items: center;
+  gap: 12px;
 }
 
 .task-buttons {
-  margin-left: 8px;
   display: inline-grid;
   grid-template-columns: repeat(4, auto);
   gap: 8px;
@@ -103,10 +99,6 @@ dialog input[type="text"] {
 
 .task-title.done {
   text-decoration: line-through;
-}
-
-.scheduled {
-  margin: 0 12px;
 }
 
 dialog {
