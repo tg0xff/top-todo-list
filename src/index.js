@@ -100,6 +100,7 @@ const UI = (() => {
   };
   const makeTaskDiv = (id) => {
     const task = document.createElement("div");
+    task.className = "task";
     task.setAttribute("data-id", id);
     const taskHeader = makeTaskHeader(id);
     task.appendChild(taskHeader);
@@ -146,10 +147,10 @@ const UI = (() => {
     return span;
   };
   const newTaskOkBtn = (e) => {
-    const form = findParentElement(e, "new-task-form");
-    const task = form.parentNode;
+    const task = findParentElement(e, "task");
+    const form = task.querySelector(".new-task-form");
 
-    const parentTask = task.parentNode.parentNode;
+    const parentTask = task.parentNode.parentNode.parentNode;
     const parentTaskId = parentTask.getAttribute("data-id");
     let nestedLvl;
     if (parentTask.classList.contains("task")) {
@@ -188,7 +189,7 @@ const UI = (() => {
     const task = findParentElement(e, "task");
     const taskId = task.getAttribute("data-id");
 
-    const parentTask = task.parentNode.parentNode;
+    const parentTask = task.parentNode.parentNode.parentNode;
     const parentTaskId = parentTask.getAttribute("data-id");
     if (parentTask.classList.contains("task")) {
       Storage.deleteNested(parentTaskId, taskId);
