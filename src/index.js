@@ -116,10 +116,13 @@ const UI = (() => {
     body.appendChild(button);
     return button;
   })();
-  const newTaskFormBtn = () => {
+  const newTaskFormBtn = (container) => {
+    if (container === undefined) {
+      container = body.querySelector("#tasks");
+    }
     const task = document.createElement("div");
     task.classList.add("task");
-    body.insertBefore(task, newTaskBtn);
+    container.appendChild(task);
     const form = document.createElement("span");
     form.classList.add("new-task-form");
     task.appendChild(form);
