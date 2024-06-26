@@ -139,12 +139,13 @@ form > div:last-child {
   font-family: inherit;
   font-size: inherit;
   width: 75ch;
-  min-height: 300px;
+  height: 300px;
   padding: 4px;
   margin: 8px 0;
   border: 1px solid #000;
   resize: none;
   overflow-wrap: break-word;
+  overflow-y: scroll;
 }
 
 .task-description:focus {
