@@ -64,10 +64,10 @@ const UI = (() => {
     const description = document.createElement("div");
     description.className = "task-description";
     description.textContent = Storage.getDescription(taskId);
-    contents.insertBefore(nested, description);
+    contents.insertBefore(description, nested);
     const descButtons = document.createElement("div");
     descButtons.className = "task-description-buttons";
-    contents.insertBefore(nested, description);
+    contents.insertBefore(descButtons, nested);
     const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
     descButtons.appendChild(editDescriptionBtn);
   };
@@ -233,6 +233,7 @@ const UI = (() => {
     contents.style.marginLeft = calcTaskIndent(task);
     task.appendChild(contents);
     const nested = document.createElement("div");
+    nested.className = "nested";
     contents.appendChild(nested);
     addDescriptionElements(task);
   };
