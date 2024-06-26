@@ -130,6 +130,8 @@ form > div:last-child {
 }
 
 .task-description {
+  font-family: inherit;
+  font-size: inherit;
   width: 75ch;
   min-height: 100px;
   padding: 4px;
