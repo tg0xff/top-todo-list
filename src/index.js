@@ -193,6 +193,7 @@ const UI = (() => {
   };
   const taskEditTitleBtn = (e) => {
     const taskHeader = findParentElement(e, "task-header");
+    const taskId = taskHeader.parentNode.getAttribute("data-id");
     const title = taskHeader.querySelector(".task-title");
     if (!title) {
       return;
@@ -201,6 +202,7 @@ const UI = (() => {
     const scheduled = taskHeader.querySelector(".scheduled");
     const textWidget = document.createElement("input");
     textWidget.type = "text";
+    textWidget.value = Storage.getTitle(taskId);
     taskHeader.insertBefore(textWidget, scheduled);
     const applyTitleBtn = makeButton("ok-title-change", mdiCheck, 24)
     taskHeader.insertBefore(applyTitleBtn, scheduled);
