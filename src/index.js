@@ -87,7 +87,7 @@ const UI = (() => {
     taskHeader.className = "task-header";
     task.appendChild(taskHeader);
     const foldArrow = document.createElement("span");
-    const foldClass = "task-fold-arrow";
+    const foldClass = "task-unfold-arrow";
     foldArrow.classList.add(foldClass);
     const foldIcon = makeIconSvg(mdiMenuRight, 18, foldClass);
     foldArrow.appendChild(foldIcon);
@@ -193,6 +193,21 @@ const UI = (() => {
     title.textContent = Storage.getTitle(taskId);
     taskHeader.insertBefore(title, scheduled);
   };
+  const taskUnfoldArrow = (e) => {
+    const task = findParentElement(e, "task");
+    const taskId = task.getAttribute("data-id");
+    const contents = document.createElement("div");
+    contents.className = "task-contents";
+    task.appendChild(contents);
+    const description = document.createElement("div");
+    description.className = "task-description";
+    description.textContent = Storage.getDescription(taskId);
+    contents.appendChild(description);
+    const descButtons = document.createElement("div");
+    contents.appendChild(descButtons);
+    const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
+    descButtons.appendChild(editDescriptionBtn);
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -211,6 +226,7 @@ const UI = (() => {
       "task-schedule": taskScheduleBtn,
       "task-edit-title": taskEditTitleBtn,
       "ok-title-change": okTitleChangeBtn,
+      "task-unfold-arrow": taskUnfoldArrow,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
@@ -292,5 +308,8 @@ class Storage {
   }
   static getTitle(id) {
     return this.storage.todos[id].title;
+  }
+  static getDescription(id) {
+    return this.storage.todos[id].description;
   }
 }
