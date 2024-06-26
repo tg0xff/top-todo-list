@@ -127,3 +127,11 @@ form > div:last-child {
   grid-template-columns: 1fr;
   justify-items: end;
 }
+
+.task-description {
+  width: 75ch;
+  min-height: 100px;
+  padding: 4px;
+  margin: 8px 0;
+  border: 1px solid #000;
+}
