@@ -187,6 +187,13 @@ const UI = (() => {
   const taskDeleteBtn = (e) => {
     const task = findParentElement(e, "task");
     const taskId = task.getAttribute("data-id");
+
+    const parentTask = task.parentNode.parentNode;
+    const parentTaskId = parentTask.getAttribute("data-id");
+    if (parentTask.classList.contains("task")) {
+      Storage.deleteNested(parentTaskId, taskId);
+    }
+
     Storage.deleteTask(taskId);
     task.remove();
   };
