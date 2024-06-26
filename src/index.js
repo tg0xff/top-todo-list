@@ -148,8 +148,18 @@ const UI = (() => {
   const newTaskOkBtn = (e) => {
     const form = findParentElement(e, "new-task-form");
     const task = form.parentNode;
+
+    const parentTask = task.parentNode.parentNode;
+    let nestedLvl;
+    if (parentTask.classList.contains("task")) {
+      const parentTaskId = parentTask.getAttribute("data-id");
+      nestedLvl = Storage.getNestedLvl(parentTaskId) + 1;
+    } else {
+      nestedLvl = 0;
+    }
+
     const titleInput = form.querySelector("input");
-    const taskId = Storage.newTodo(titleInput.value, 0);
+    const taskId = Storage.newTodo(titleInput.value, nestedLvl);
     task.setAttribute("data-id", taskId);
     form.remove();
     const taskHeader = makeTaskHeader(taskId);
