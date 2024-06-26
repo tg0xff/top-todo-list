@@ -57,6 +57,20 @@ const UI = (() => {
     const indentMargin = Number(taskIndentVar.slice(0, -2)) * indentMultiplier;
     return `${indentMargin}px`;
   };
+  const addDescriptionElements = (task) => {
+    const taskId = task.getAttribute("data-id");
+    const contents = task.querySelector(".task-contents");
+    const nested = contents.querySelector(".nested")
+    const description = document.createElement("div");
+    description.className = "task-description";
+    description.textContent = Storage.getDescription(taskId);
+    contents.insertBefore(nested, description);
+    const descButtons = document.createElement("div");
+    descButtons.className = "task-description-buttons";
+    contents.insertBefore(nested, description);
+    const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
+    descButtons.appendChild(editDescriptionBtn);
+  };
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
@@ -220,17 +234,9 @@ const UI = (() => {
     contents.className = "task-contents";
     contents.style.marginLeft = calcTaskIndent(task);
     task.appendChild(contents);
-    const description = document.createElement("div");
-    description.className = "task-description";
-    description.textContent = Storage.getDescription(taskId);
-    contents.appendChild(description);
-    const descButtons = document.createElement("div");
-    descButtons.className = "task-description-buttons";
-    contents.appendChild(descButtons);
-    const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
-    descButtons.appendChild(editDescriptionBtn);
     const nested = document.createElement("div");
     contents.appendChild(nested);
+    addDescriptionElements(task);
   };
   const taskFoldArrow = (e) => {
     const task = findParentElement(e, "task");
