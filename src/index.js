@@ -218,6 +218,7 @@ const UI = (() => {
 
     const contents = document.createElement("div");
     contents.className = "task-contents";
+    contents.style.marginLeft = calcTaskIndent(task);
     task.appendChild(contents);
     const description = document.createElement("div");
     description.className = "task-description";
