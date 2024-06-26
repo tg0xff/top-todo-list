@@ -63,7 +63,7 @@ const UI = (() => {
     const nested = contents.querySelector(".nested")
     const description = document.createElement("div");
     description.className = "task-description";
-    description.textContent = Storage.getDescription(taskId);
+    description.innerHTML = Storage.getDescription(taskId).replaceAll("\n", "<br>");
     contents.insertBefore(description, nested);
     const descButtons = document.createElement("div");
     descButtons.className = "task-description-buttons";
