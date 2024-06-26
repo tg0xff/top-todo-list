@@ -144,6 +144,7 @@ form > div:last-child {
   margin: 8px 0;
   border: 1px solid #000;
   resize: none;
+  overflow-wrap: break-word;
 }
 
 .task-description:focus {
