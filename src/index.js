@@ -222,8 +222,6 @@ const UI = (() => {
   };
   const taskUnfoldArrow = (e) => {
     const task = findParentElement(e, "task");
-    const taskId = task.getAttribute("data-id");
-
     const taskHeader = task.querySelector(".task-header");
     const taskTitle = taskHeader.querySelector(".task-title");
     taskHeader.querySelector(".task-unfold-arrow").remove();
