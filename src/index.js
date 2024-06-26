@@ -150,9 +150,9 @@ const UI = (() => {
     const task = form.parentNode;
 
     const parentTask = task.parentNode.parentNode;
+    const parentTaskId = parentTask.getAttribute("data-id");
     let nestedLvl;
     if (parentTask.classList.contains("task")) {
-      const parentTaskId = parentTask.getAttribute("data-id");
       nestedLvl = Storage.getNestedLvl(parentTaskId) + 1;
     } else {
       nestedLvl = 0;
@@ -161,6 +161,9 @@ const UI = (() => {
     const titleInput = form.querySelector("input");
     const taskId = Storage.newTodo(titleInput.value, nestedLvl);
     task.setAttribute("data-id", taskId);
+    if (nestedLvl > 0) {
+      Storage.pushNested(parentTaskId, taskId);
+    }
     form.remove();
     const taskHeader = makeTaskHeader(taskId);
     task.appendChild(taskHeader);
@@ -443,5 +446,8 @@ class Storage {
   }
   static getNestedArr(id) {
     return this.storage.todos[id].nested;
+  }
+  static pushNested(parentId, childId) {
+    this.storage.todos[parentId].nested.push(childId);
   }
 }
