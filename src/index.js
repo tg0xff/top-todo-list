@@ -225,9 +225,12 @@ const UI = (() => {
     description.textContent = Storage.getDescription(taskId);
     contents.appendChild(description);
     const descButtons = document.createElement("div");
+    descButtons.className = "task-description-buttons";
     contents.appendChild(descButtons);
     const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
     descButtons.appendChild(editDescriptionBtn);
+    const nested = document.createElement("div");
+    contents.appendChild(nested);
   };
   const taskFoldArrow = (e) => {
     const task = findParentElement(e, "task");
@@ -237,6 +240,21 @@ const UI = (() => {
     const taskUnfold = makeFoldIcon(false);
     taskHeader.insertBefore(taskUnfold, taskTitle);
     task.querySelector(".task-contents").remove();
+  };
+  const taskEditDescriptionBtn = (e) => {
+    const task = findParentElement(e, "task");
+    const contents = task.querySelector(".task-contents");
+    const nested = contents.querySelector(".nested");
+    contents.querySelector(".task-description").remove()
+    contents.querySelector(".task-description-buttons").remove()
+    const textarea = document.createElement("textarea");
+    textarea.className = "task-description";
+    contents.insertBefore(textarea, nested);
+    const descButtons = document.createElement("div");
+    descButtons.className = "task-description-buttons";
+    contents.insertBefore(descButtons, nested);
+    const applyDescriptionBtn = makeButton("task-apply-description", mdiCheck, 24);
+    descButtons.appendChild(applyDescriptionBtn);
   };
   const click = function (e) {
     switch (e.target.id) {
@@ -258,6 +276,7 @@ const UI = (() => {
       "ok-title-change": okTitleChangeBtn,
       "task-unfold-arrow": taskUnfoldArrow,
       "task-fold-arrow": taskFoldArrow,
+      "task-edit-description": taskEditDescriptionBtn,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
