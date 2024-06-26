@@ -221,6 +221,15 @@ const UI = (() => {
     const editDescriptionBtn = makeButton("task-edit-description", mdiPencil, 24);
     descButtons.appendChild(editDescriptionBtn);
   };
+  const taskFoldArrow = (e) => {
+    const task = findParentElement(e, "task");
+    const taskHeader = task.querySelector(".task-header");
+    const taskTitle = taskHeader.querySelector(".task-title");
+    taskHeader.querySelector(".task-fold-arrow").remove();
+    const taskUnfold = makeFoldIcon(false);
+    taskHeader.insertBefore(taskUnfold, taskTitle);
+    task.querySelector(".task-contents").remove();
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -240,6 +249,7 @@ const UI = (() => {
       "task-edit-title": taskEditTitleBtn,
       "ok-title-change": okTitleChangeBtn,
       "task-unfold-arrow": taskUnfoldArrow,
+      "task-fold-arrow": taskFoldArrow,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
