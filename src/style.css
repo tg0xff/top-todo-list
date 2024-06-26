@@ -5,6 +5,7 @@
 }
 
 :root {
+  --c-focused: #08c;
   --task-indentation: 16px;
 }
 
@@ -44,6 +45,10 @@ input[type="text"] {
   border: 1px solid #000;
   border-radius: 5px;
   padding: 5px;
+}
+
+input[type="text"]:focus {
+  border-color: var(--c-focused);
 }
 
 input[type="text"]:disabled {
@@ -130,6 +135,7 @@ form > div:last-child {
 }
 
 .task-description {
+  outline: none;
   font-family: inherit;
   font-size: inherit;
   width: 75ch;
@@ -138,4 +144,8 @@ form > div:last-child {
   margin: 8px 0;
   border: 1px solid #000;
   resize: none;
+}
+
+.task-description:focus {
+  border-color: var(--c-focused);
 }
