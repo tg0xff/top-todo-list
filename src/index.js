@@ -421,7 +421,7 @@ class Storage {
   static getNestedLvl(id) {
     return this.storage.todos[id].nestedLvl;
   }
-  static getNestedArr() {
+  static getNestedArr(id) {
     return this.storage.todos[id].nested;
   }
 }
