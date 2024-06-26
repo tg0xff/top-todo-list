@@ -241,6 +241,7 @@ const UI = (() => {
   };
   const taskUnfoldArrow = (e) => {
     const task = findParentElement(e, "task");
+    const taskId = task.getAttribute("data-id");
     const taskHeader = task.querySelector(".task-header");
     const taskTitle = taskHeader.querySelector(".task-title");
     taskHeader.querySelector(".task-unfold-arrow").remove();
@@ -253,6 +254,7 @@ const UI = (() => {
     task.appendChild(contents);
     const nested = document.createElement("div");
     nested.className = "nested";
+    showNestedTasks(nested, Storage.getNestedArr(taskId));
     contents.appendChild(nested);
     addDescriptionElements(task);
   };
