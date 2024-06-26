@@ -426,6 +426,11 @@ class Storage {
       const index = this.storage.topLvl.indexOf(id);
       this.storage.topLvl.splice(index, 1);
     }
+    if (this.storage.todos[id].nested.length > 0) {
+      for (const id of this.storage.todos[id].nested) {
+        deleteTask(id);
+      }
+    }
     this.storage.todos[id] = null;
   }
   static setDate(id, date) {
