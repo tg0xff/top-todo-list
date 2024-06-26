@@ -111,11 +111,6 @@ const UI = (() => {
       container.appendChild(task);
     }
   };
-  const newTaskBtn = (() => {
-    const button = makeButton("new-task", mdiPlusCircle, 24);
-    body.appendChild(button);
-    return button;
-  })();
   const newTaskFormBtn = (container) => {
     if (container === undefined) {
       container = body.querySelector("#tasks");
@@ -345,6 +340,8 @@ const UI = (() => {
   };
   body.addEventListener("click", click);
   body.querySelector("#set-hour").addEventListener("change", toggleHourWidget);
+  const newTaskBtn = makeButton("new-task", mdiPlusCircle, 24);
+  body.appendChild(newTaskBtn);
 })();
 
 class Todo {
