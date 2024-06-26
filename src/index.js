@@ -427,8 +427,8 @@ class Storage {
       this.storage.topLvl.splice(index, 1);
     }
     if (this.storage.todos[id].nested.length > 0) {
-      for (const id of this.storage.todos[id].nested) {
-        deleteTask(id);
+      for (const nestedId of this.storage.todos[id].nested) {
+        this.deleteTask(nestedId);
       }
     }
     this.storage.todos[id] = null;
