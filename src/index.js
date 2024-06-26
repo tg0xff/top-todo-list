@@ -111,10 +111,7 @@ const UI = (() => {
       container.appendChild(task);
     }
   };
-  const newTaskFormBtn = (container) => {
-    if (container === undefined) {
-      container = body.querySelector("#tasks");
-    }
+  const makeNewTaskForm = (container) => {
     const task = document.createElement("div");
     task.classList.add("task");
     container.appendChild(task);
@@ -129,6 +126,10 @@ const UI = (() => {
     form.appendChild(ok);
     const cancel = makeButton("new-task-cancel", mdiCloseCircle, btnSize);
     form.appendChild(cancel);
+  };
+  const newTaskFormBtn = () => {
+    const container = body.querySelector("#tasks");
+    makeNewTaskForm(container);
   };
   const createTaskButtons = () => {
     const span = document.createElement("span");
@@ -308,6 +309,11 @@ const UI = (() => {
     contents.querySelector(".task-description-buttons").remove();
     addDescriptionElements(task);
   };
+  const addNestedTaskBtn = (e) => {
+    const task = findParentElement(e, "task");
+    const nestedContainer = task.querySelector(".nested");
+    makeNewTaskForm(nestedContainer);
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -330,6 +336,7 @@ const UI = (() => {
       "task-fold-arrow": taskFoldArrow,
       "task-edit-description": taskEditDescriptionBtn,
       "task-apply-description": taskApplyDescriptionBtn,
+      "add-nested-task": addNestedTaskBtn,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
