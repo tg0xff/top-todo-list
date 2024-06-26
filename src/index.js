@@ -86,6 +86,7 @@ const UI = (() => {
     taskHeader.appendChild(scheduled);
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
+    return taskHeader;
   }
   const makeTaskDiv = (id) => {
     const task = document.createElement("div");
