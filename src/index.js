@@ -41,6 +41,15 @@ const UI = (() => {
     } while (!parent.classList.contains(className));
     return parent;
   };
+  const makeFoldIcon = (fold) => {
+    const className = fold ? "task-fold-arrow" : "task-unfold-arrow";
+    const iconData = fold ? mdiMenuDown : mdiMenuRight;
+    const foldIcon = document.createElement("span");
+    foldIcon.className = className;
+    const taskFoldIcon = makeIconSvg(iconData, 18, className);
+    foldIcon.appendChild(taskFoldIcon);
+    return foldIcon;
+  };
   const newTaskBtn = (() => {
     const button = makeButton("new-task", mdiPlusCircle, 24);
     body.appendChild(button);
@@ -87,11 +96,7 @@ const UI = (() => {
     const taskHeader = document.createElement("span");
     taskHeader.className = "task-header";
     task.appendChild(taskHeader);
-    const foldArrow = document.createElement("span");
-    const foldClass = "task-unfold-arrow";
-    foldArrow.classList.add(foldClass);
-    const foldIcon = makeIconSvg(mdiMenuRight, 18, foldClass);
-    foldArrow.appendChild(foldIcon);
+    const foldArrow = makeFoldIcon(false);
     taskHeader.appendChild(foldArrow);
     const title = document.createElement("span");
     title.className = "task-title";
@@ -201,11 +206,8 @@ const UI = (() => {
     const taskHeader = task.querySelector(".task-header");
     const taskTitle = taskHeader.querySelector(".task-title");
     taskHeader.querySelector(".task-unfold-arrow").remove();
-    const taskFold = document.createElement("span");
-    taskFold.className = "task-fold-arrow";
+    const taskFold = makeFoldIcon(true);
     taskHeader.insertBefore(taskFold, taskTitle);
-    const taskFoldIcon = makeIconSvg(mdiMenuDown, 18, "task-fold-arrow");
-    taskFold.appendChild(taskFoldIcon);
 
     const contents = document.createElement("div");
     contents.className = "task-contents";
