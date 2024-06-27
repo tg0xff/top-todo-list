@@ -10,6 +10,7 @@ import {
   mdiPencil,
   mdiMenuDown,
   mdiPlusCircleMultiple,
+  mdiPriorityHigh,
 } from "@mdi/js";
 
 const UI = (() => {
@@ -138,6 +139,8 @@ const UI = (() => {
     const btnSize = 24;
     const done = makeButton("task-done", mdiCheck, btnSize);
     span.appendChild(done);
+    const priority = makeButton("task-prioritise", mdiPriorityHigh, btnSize);
+    span.appendChild(priority);
     const schedule = makeButton("task-schedule", mdiCalendarClock, btnSize);
     span.appendChild(schedule);
     const editTaskTitle = makeButton("task-edit-title", mdiPencil, btnSize);
