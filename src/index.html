@@ -8,7 +8,9 @@
     <dialog id="schedule-menu" class="schedule-menu">
       <form>
         <div>
-          <div class="x-container"><button id="close-schedule-form" type="button">x</button></div>
+          <div class="x-container">
+            <button id="close-schedule-form" type="button">x</button>
+          </div>
         </div>
         <div>
           <input id="date" name="date" type="date" required />
@@ -26,6 +28,28 @@
         </div>
         <div>
           <button id="set-schedule">Ok</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="priority-selection">
+      <form>
+        <div class="x-container">
+          <button id="close-priority-form" type="button">x</button>
+        </div>
+        <div>
+          <input id="priority-low" name="priority" type="radio" value="0" />
+          <label for="priority-low">Low priority</label>
+        </div>
+        <div>
+          <input id="priority-default" name="priority" type="radio" value="1" />
+          <label for="priority-default">Mid priority (default)</label>
+        </div>
+        <div>
+          <input id="priority-high" name="priority" type="radio" value="2" />
+          <label for="priority-high">High priority</label>
+        </div>
+        <div>
+          <button id="set-priority">Ok</button>
         </div>
       </form>
     </dialog>
