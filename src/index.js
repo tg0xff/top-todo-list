@@ -199,7 +199,7 @@ const UI = (() => {
     task.remove();
   };
   const taskScheduleBtn = (e) => {
-    const dialog = body.querySelector("dialog");
+    const dialog = body.querySelector("#schedule-menu");
     const task = findParentElement(e, "task");
     dialog.setAttribute("data-id", task.getAttribute("data-id"));
     dialog.showModal();
