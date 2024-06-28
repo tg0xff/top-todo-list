@@ -342,6 +342,12 @@ const UI = (() => {
     const nestedContainer = task.querySelector(".nested");
     makeNewTaskForm(nestedContainer);
   };
+  const taskPrioritise = (e) => {
+    const dialog = body.querySelector("#priority-selection");
+    const task = findParentElement(e, "task");
+    dialog.setAttribute("data-id", task.getAttribute("data-id"));
+    dialog.showModal();
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -365,6 +371,7 @@ const UI = (() => {
       "task-edit-description": taskEditDescriptionBtn,
       "task-apply-description": taskApplyDescriptionBtn,
       "add-nested-task": addNestedTaskBtn,
+      "task-prioritise": taskPrioritise,
     };
     for (const className in classes) {
       if (e.target.classList.contains(className)) {
