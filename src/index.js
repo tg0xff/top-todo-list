@@ -184,8 +184,6 @@ const UI = (() => {
     let nestedLvl;
     if (parentTask.classList.contains("task")) {
       nestedLvl = Storage.getNestedLvl(parentTaskId) + 1;
-      const parentTaskTitle = parentTask.querySelector(".task-title");
-      updateProjectStyling(parentTaskId, parentTaskTitle);
     } else {
       nestedLvl = 0;
     }
@@ -195,6 +193,8 @@ const UI = (() => {
     task.setAttribute("data-id", taskId);
     if (nestedLvl > 0) {
       Storage.pushNested(parentTaskId, taskId);
+      const parentTaskTitle = parentTask.querySelector(".task-title");
+      updateProjectStyling(parentTaskId, parentTaskTitle);
     }
     form.remove();
     const taskHeader = makeTaskHeader(taskId);
