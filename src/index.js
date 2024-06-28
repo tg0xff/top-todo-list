@@ -67,17 +67,10 @@ const UI = (() => {
     switch (priority) {
       case 0:
         title.classList.add("low-priority");
-        title.classList.remove("mid-priority");
-        title.classList.remove("high-priority");
-        break;
-      case 1:
-        title.classList.add("mid-priority");
-        title.classList.remove("low-priority");
         title.classList.remove("high-priority");
         break;
       case 2:
         title.classList.add("high-priority");
-        title.classList.remove("mid-priority");
         title.classList.remove("low-priority");
         break;
     }
