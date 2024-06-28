@@ -184,6 +184,8 @@ const UI = (() => {
     let nestedLvl;
     if (parentTask.classList.contains("task")) {
       nestedLvl = Storage.getNestedLvl(parentTaskId) + 1;
+      const parentTaskTitle = parentTask.querySelector(".task-title");
+      updateProjectStyling(parentTaskId, parentTaskTitle);
     } else {
       nestedLvl = 0;
     }
