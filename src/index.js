@@ -370,6 +370,8 @@ const UI = (() => {
     const priority = +form.elements["priority"].value;
     Storage.setPriority(taskId, priority);
     updatePriorityStyling(taskId);
+    form.reset();
+    dialog.close();
   };
   const click = function (e) {
     switch (e.target.id) {
