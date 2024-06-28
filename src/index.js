@@ -189,10 +189,10 @@ const UI = (() => {
     }
 
     const titleInput = form.querySelector("input");
-    const taskId = Storage.newTodo(titleInput.value, nestedLvl);
+    const taskId = Storage.addTask(titleInput.value, nestedLvl);
     task.setAttribute("data-id", taskId);
     if (nestedLvl > 0) {
-      Storage.pushNested(parentTaskId, taskId);
+      Storage.addNested(parentTaskId, taskId);
       const parentTaskTitle = parentTask.querySelector(".task-title");
       updateProjectStyling(parentTaskId, parentTaskTitle);
     }
@@ -293,7 +293,7 @@ const UI = (() => {
     const taskId = task.getAttribute("data-id");
     const scheduled = taskHeader.querySelector(".scheduled");
     const textWidget = taskHeader.querySelector('input[type="text"]');
-    Storage.changeTitle(taskId, textWidget.value);
+    Storage.setTitle(taskId, textWidget.value);
     textWidget.remove();
     const okTitleChange = taskHeader.querySelector(".ok-title-change");
     okTitleChange.remove();
@@ -454,7 +454,7 @@ class Storage {
     todos: [],
     topLvl: [],
   };
-  static newTodo(title, nestedLvl) {
+  static addTask(title, nestedLvl) {
     const todoItem = new Todo(title, nestedLvl);
     const todoId = this.storage.todos.push(todoItem) - 1;
     if (nestedLvl === 0) {
@@ -493,7 +493,7 @@ class Storage {
     const date = this.storage.todos[id].dueDate;
     if (date) return date.toLocaleString();
   }
-  static changeTitle(id, title) {
+  static setTitle(id, title) {
     this.storage.todos[id].title = title;
   }
   static getTitle(id) {
@@ -511,7 +511,7 @@ class Storage {
   static getNestedArr(id) {
     return this.storage.todos[id].nested;
   }
-  static pushNested(parentId, childId) {
+  static addNested(parentId, childId) {
     this.storage.todos[parentId].nested.push(childId);
   }
   static deleteNested(parentId, childId) {
