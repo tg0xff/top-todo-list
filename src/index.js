@@ -308,6 +308,7 @@ const UI = (() => {
     showNestedTasks(nested, Storage.getNestedArr(taskId));
     contents.appendChild(nested);
     addDescriptionElements(task);
+    Storage.getNestedArr(taskId).forEach((id) => updatePriorityStyling(id));
     const addNestedTask = makeButton(
       "add-nested-task",
       mdiPlusCircleMultiple,
