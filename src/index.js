@@ -61,21 +61,20 @@ const UI = (() => {
     const indentMargin = Number(taskIndentVar.slice(0, -2)) * indentMultiplier;
     return `${indentMargin}px`;
   };
-  const updatePriorityStyling = (taskId) => {
-    const title = body.querySelector(`[data-id="${taskId}"] .task-title`);
+  const updatePriorityStyling = (taskId, titleElem) => {
     const priority = Storage.getPriority(taskId);
     switch (priority) {
       case 0:
-        title.classList.add("low-priority");
-        title.classList.remove("high-priority");
+        titleElem.classList.add("low-priority");
+        titleElem.classList.remove("high-priority");
         break;
       case 1:
-        title.classList.remove("high-priority");
-        title.classList.remove("low-priority");
+        titleElem.classList.remove("high-priority");
+        titleElem.classList.remove("low-priority");
         break;
       case 2:
-        title.classList.add("high-priority");
-        title.classList.remove("low-priority");
+        titleElem.classList.add("high-priority");
+        titleElem.classList.remove("low-priority");
         break;
     }
   };
@@ -108,6 +107,7 @@ const UI = (() => {
     const title = document.createElement("span");
     title.className = "task-title";
     title.textContent = Storage.getTitle(id);
+    updatePriorityStyling(id, title);
     taskHeader.appendChild(title);
     const scheduled = document.createElement("span");
     scheduled.className = "scheduled";
@@ -308,7 +308,6 @@ const UI = (() => {
     showNestedTasks(nested, Storage.getNestedArr(taskId));
     contents.appendChild(nested);
     addDescriptionElements(task);
-    Storage.getNestedArr(taskId).forEach((id) => updatePriorityStyling(id));
     const addNestedTask = makeButton(
       "add-nested-task",
       mdiPlusCircleMultiple,
