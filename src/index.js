@@ -78,6 +78,13 @@ const UI = (() => {
         break;
     }
   };
+  const updateProjectStyling = (taskId, title) => {
+    if (Storage.isProject(taskId)) {
+      title.classList.add("project");
+    } else {
+      title.classList.remove("project");
+    }
+  };
   const addDescriptionElements = (task) => {
     const taskId = task.getAttribute("data-id");
     const contents = task.querySelector(".task-contents");
