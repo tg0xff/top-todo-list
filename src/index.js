@@ -431,24 +431,6 @@ const UI = (() => {
   body.appendChild(newTaskBtn);
 })();
 
-class Todo {
-  constructor(title, nestedLvl) {
-    this.title = title;
-    this.description = "";
-    this.dueDate = null;
-    this.done = false;
-    this.nestedLvl = nestedLvl;
-    this.nested = [];
-    this.priority = 1;
-  }
-  isProject() {
-    return this.nested.length > 0;
-  }
-  toggleDone() {
-    this.done = !this.done;
-  }
-}
-
 class Storage {
   static storage = {
     todos: [],
@@ -526,5 +508,23 @@ class Storage {
   }
   static isProject(id) {
     return this.storage.todos[id].isProject();
+  }
+}
+
+class Todo {
+  constructor(title, nestedLvl) {
+    this.title = title;
+    this.description = "";
+    this.dueDate = null;
+    this.done = false;
+    this.nestedLvl = nestedLvl;
+    this.nested = [];
+    this.priority = 1;
+  }
+  isProject() {
+    return this.nested.length > 0;
+  }
+  toggleDone() {
+    this.done = !this.done;
   }
 }
