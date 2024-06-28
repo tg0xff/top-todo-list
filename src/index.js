@@ -222,6 +222,8 @@ const UI = (() => {
     const parentTaskId = parentTask.getAttribute("data-id");
     if (parentTask.classList.contains("task")) {
       Storage.deleteNested(parentTaskId, taskId);
+      const parentTaskTitle = parentTask.querySelector(".task-title");
+      updateProjectStyling(parentTaskId, parentTaskTitle);
     }
 
     Storage.deleteTask(taskId);
