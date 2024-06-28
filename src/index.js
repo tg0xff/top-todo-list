@@ -69,6 +69,10 @@ const UI = (() => {
         title.classList.add("low-priority");
         title.classList.remove("high-priority");
         break;
+      case 1:
+        title.classList.remove("high-priority");
+        title.classList.remove("low-priority");
+        break;
       case 2:
         title.classList.add("high-priority");
         title.classList.remove("low-priority");
