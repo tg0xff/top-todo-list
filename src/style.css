@@ -114,6 +114,10 @@ dialog input[type="text"] {
   color: #a60000;
 }
 
+.project {
+  font-weight: 800;
+}
+
 dialog {
   border: none;
   border-radius: 8px;
