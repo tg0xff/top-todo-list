@@ -61,6 +61,27 @@ const UI = (() => {
     const indentMargin = Number(taskIndentVar.slice(0, -2)) * indentMultiplier;
     return `${indentMargin}px`;
   };
+  const updatePriorityStyling = (taskId) => {
+    const title = body.querySelector(`[data-id="${taskId}"] .task-title`);
+    const priority = Storage.getPriority(taskId);
+    switch (priority) {
+      case 0:
+        title.classList.add("low-priority");
+        title.classList.remove("mid-priority");
+        title.classList.remove("high-priority");
+        break;
+      case 1:
+        title.classList.add("mid-priority");
+        title.classList.remove("low-priority");
+        title.classList.remove("high-priority");
+        break;
+      case 2:
+        title.classList.add("high-priority");
+        title.classList.remove("mid-priority");
+        title.classList.remove("low-priority");
+        break;
+    }
+  };
   const addDescriptionElements = (task) => {
     const taskId = task.getAttribute("data-id");
     const contents = task.querySelector(".task-contents");
@@ -354,6 +375,7 @@ const UI = (() => {
     const taskId = dialog.getAttribute("data-id");
     const priority = +form.elements["priority"].value;
     Storage.setPriority(taskId, priority);
+    updatePriorityStyling(taskId);
   };
   const click = function (e) {
     switch (e.target.id) {
@@ -485,5 +507,8 @@ class Storage {
   }
   static setPriority(id, priority) {
     this.storage.todos[id].priority = priority;
+  }
+  static getPriority(id) {
+    return this.storage.todos[id].priority;
   }
 }
