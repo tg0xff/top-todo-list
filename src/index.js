@@ -115,6 +115,7 @@ const UI = (() => {
     title.className = "task-title";
     title.textContent = Storage.getTitle(id);
     updatePriorityStyling(id, title);
+    updateProjectStyling(id, title);
     taskHeader.appendChild(title);
     const scheduled = document.createElement("span");
     scheduled.className = "scheduled";
