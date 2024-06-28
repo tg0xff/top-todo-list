@@ -352,7 +352,7 @@ const UI = (() => {
     const dialog = body.querySelector("#priority-selection");
     const form = dialog.querySelector("> form");
     const taskId = dialog.getAttribute("data-id");
-    const priority = form.elements["priority"].value;
+    const priority = +form.elements["priority"].value;
     Storage.setPriority(taskId, priority);
   };
   const click = function (e) {
