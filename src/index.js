@@ -462,12 +462,6 @@ class Storage {
     }
     return todoId;
   }
-  static toggleTodo(id) {
-    this.storage.todos[id].toggleDone();
-  }
-  static isTaskDone(id) {
-    return this.storage.todos[id].done;
-  }
   static deleteTask(id) {
     if (this.storage.todos[id].nestedLvl === 0) {
       const index = this.storage.topLvl.indexOf(id);
@@ -479,6 +473,12 @@ class Storage {
       }
     }
     this.storage.todos[id] = null;
+  }
+  static toggleTodo(id) {
+    this.storage.todos[id].toggleDone();
+  }
+  static isTaskDone(id) {
+    return this.storage.todos[id].done;
   }
   static setDate(id, date) {
     this.storage.todos[id].dueDate = new Date(date);
