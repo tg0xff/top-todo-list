@@ -473,4 +473,7 @@ class Storage {
     const index = this.storage.todos[parentId].nested.indexOf(childId);
     this.storage.todos[parentId].nested.splice(index, 1);
   }
+  static setPriority(id, priority) {
+    this.storage.todos[id].priority = priority;
+  }
 }
