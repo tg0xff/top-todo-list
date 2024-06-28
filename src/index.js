@@ -364,7 +364,7 @@ const UI = (() => {
   };
   const setPriorityBtn = () => {
     const dialog = body.querySelector("#priority-selection");
-    const form = dialog.querySelector("> form");
+    const form = dialog.querySelector("form");
     const taskId = dialog.getAttribute("data-id");
     const priority = +form.elements["priority"].value;
     Storage.setPriority(taskId, priority);
