@@ -519,4 +519,7 @@ class Storage {
   static getPriority(id) {
     return this.storage.todos[id].priority;
   }
+  static isProject(id) {
+    return this.storage.todos[id].isProject();
+  }
 }
