@@ -348,6 +348,13 @@ const UI = (() => {
     dialog.setAttribute("data-id", task.getAttribute("data-id"));
     dialog.showModal();
   };
+  const setPriorityBtn = () => {
+    const dialog = body.querySelector("#priority-selection");
+    const form = dialog.querySelector("> form");
+    const taskId = dialog.getAttribute("data-id");
+    const priority = form.elements["priority"].value;
+    Storage.setPriority(taskId, priority);
+  };
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -355,6 +362,9 @@ const UI = (() => {
         return;
       case "close-schedule-form":
         closeScheduleFormBtn(e);
+        return;
+      case "set-priority":
+        setPriorityBtn();
         return;
     }
     const classes = {
