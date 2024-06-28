@@ -387,7 +387,6 @@ const UI = (() => {
 })();
 
 class Todo {
-  #priority = 1;
   constructor(title, nestedLvl) {
     this.title = title;
     this.description = "";
@@ -395,14 +394,7 @@ class Todo {
     this.done = false;
     this.nestedLvl = nestedLvl;
     this.nested = [];
-  }
-  set priority(lvl) {
-    if (lvl >= 0 && lvl <= 2) {
-      this.#priority = lvl;
-    }
-  }
-  get priority() {
-    return this.#priority;
+    this.priority = 1;
   }
   isProject() {
     return this.nested.length > 0;
