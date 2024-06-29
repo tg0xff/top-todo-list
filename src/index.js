@@ -531,7 +531,8 @@ class Todo {
 }
 
 function serialiseData() {
-  localStorage.setItem("data", Data.storage);
+  const data = JSON.stringify(Data.storage);
+  localStorage.setItem("data", data);
 }
 
 function deserialiseData() {
