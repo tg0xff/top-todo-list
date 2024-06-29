@@ -528,3 +528,10 @@ class Todo {
     this.done = !this.done;
   }
 }
+
+function serialiseData() {
+  localStorage.setItem("data", Data.storage);
+}
+
+window.addEventListener("unload", serialiseData);
+window.addEventListener("storage", serialiseData);
