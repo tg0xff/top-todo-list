@@ -540,8 +540,11 @@ function deserialiseData() {
   if (!dataString) return;
   const data = JSON.parse(dataString);
   data.todos = data.todos.map((item) => {
-    const obj = Object.create(Todo.prototype);
-    return Object.assign(obj, item);
+    const task = Object.assign(Object.create(Todo.prototype), item);
+    if (task.dueDate) {
+      task.dueDate = new Date(task.dueDate);
+    }
+    return task;
   });
   Data.storage = data;
   const container = UI.body.querySelector("#tasks");
