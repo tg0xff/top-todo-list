@@ -539,7 +539,7 @@ function deserialiseData() {
     const obj = Object.create(Todo.prototype);
     return Object.assign(obj, item);
   });
-  localStorage.setItem("data", data);
+  Data.storage = data;
 }
 
 window.addEventListener("unload", serialiseData);
