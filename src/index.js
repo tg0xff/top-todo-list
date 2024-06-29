@@ -533,5 +533,15 @@ function serialiseData() {
   localStorage.setItem("data", Data.storage);
 }
 
+function deserialiseData() {
+  const data = localStorage.getItem("data");
+  data.todos.map((item) => {
+    const obj = Object.create(Todo.prototype);
+    return Object.assign(obj, item);
+  });
+  localStorage.setItem("data", data);
+}
+
 window.addEventListener("unload", serialiseData);
 window.addEventListener("storage", serialiseData);
+window.addEventListener("load", deserialiseData);
