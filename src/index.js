@@ -116,6 +116,7 @@ const UI = (() => {
     title.textContent = Data.getTitle(id);
     updatePriorityStyling(id, title);
     updateProjectStyling(id, title);
+    if (Data.isTaskDone(id)) title.classList.add("done");
     taskHeader.appendChild(title);
     const scheduled = document.createElement("span");
     scheduled.className = "scheduled";
