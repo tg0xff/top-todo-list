@@ -391,6 +391,12 @@ const UI = (() => {
     form.reset();
     dialog.close();
   };
+  const closePriorityForm = () => {
+    const dialog = body.querySelector("#priority-selection");
+    const form = dialog.querySelector("form");
+    form.reset();
+    dialog.close();
+  }
   const click = function (e) {
     switch (e.target.id) {
       case "set-schedule":
@@ -401,6 +407,9 @@ const UI = (() => {
         return;
       case "set-priority":
         setPriorityBtn(e);
+        return;
+      case "close-priority-form":
+        closePriorityForm();
         return;
     }
     const classes = {
