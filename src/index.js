@@ -385,7 +385,7 @@ const UI = (() => {
     const taskId = dialog.getAttribute("data-id");
     const priority = +form.elements["priority"].value;
     Data.setPriority(taskId, priority);
-    const title = body.querySelector(`div[data-id="${taskId}"]`);
+    const title = body.querySelector(`div[data-id="${taskId}"] span.task-title`);
     updatePriorityStyling(taskId, title);
     form.reset();
     dialog.close();
