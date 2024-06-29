@@ -539,7 +539,7 @@ function deserialiseData() {
   const dataString = localStorage.getItem("data");
   if (!dataString) return;
   const data = JSON.parse(dataString);
-  data.todos.map((item) => {
+  data.todos = data.todos.map((item) => {
     const obj = Object.create(Todo.prototype);
     return Object.assign(obj, item);
   });
