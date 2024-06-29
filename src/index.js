@@ -552,6 +552,6 @@ function deserialiseData() {
   UI.showNestedTasks(container, Data.storage.topLvl);
 }
 
-window.addEventListener("unload", serialiseData);
+window.addEventListener("visibilitychange", serialiseData);
 window.addEventListener("storage", serialiseData);
 window.addEventListener("load", deserialiseData);
