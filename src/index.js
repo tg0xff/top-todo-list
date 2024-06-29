@@ -54,7 +54,7 @@ const UI = (() => {
   };
   const calcTaskIndent = (task) => {
     const taskId = task.getAttribute("data-id");
-    const indentMultiplier = Storage.getNestedLvl(taskId) + 1;
+    const indentMultiplier = Data.getNestedLvl(taskId) + 1;
     const taskIndentVar = getComputedStyle(document.body).getPropertyValue(
       "--task-indentation",
     );
@@ -62,7 +62,7 @@ const UI = (() => {
     return `${indentMargin}px`;
   };
   const updatePriorityStyling = (taskId, titleElem) => {
-    const priority = Storage.getPriority(taskId);
+    const priority = Data.getPriority(taskId);
     switch (priority) {
       case 0:
         titleElem.classList.add("low-priority");
@@ -79,7 +79,7 @@ const UI = (() => {
     }
   };
   const updateProjectStyling = (taskId, title) => {
-    if (Storage.isProject(taskId)) {
+    if (Data.isProject(taskId)) {
       title.classList.add("project");
     } else {
       title.classList.remove("project");
@@ -91,7 +91,7 @@ const UI = (() => {
     const nested = contents.querySelector(".nested");
     const description = document.createElement("div");
     description.className = "task-description";
-    description.innerHTML = Storage.getDescription(taskId).replaceAll(
+    description.innerHTML = Data.getDescription(taskId).replaceAll(
       "\n",
       "<br>",
     );
@@ -113,13 +113,13 @@ const UI = (() => {
     taskHeader.appendChild(foldArrow);
     const title = document.createElement("span");
     title.className = "task-title";
-    title.textContent = Storage.getTitle(id);
+    title.textContent = Data.getTitle(id);
     updatePriorityStyling(id, title);
     updateProjectStyling(id, title);
     taskHeader.appendChild(title);
     const scheduled = document.createElement("span");
     scheduled.className = "scheduled";
-    scheduled.textContent = Storage.getDate(id) ?? "";
+    scheduled.textContent = Data.getDate(id) ?? "";
     taskHeader.appendChild(scheduled);
     const taskButtons = createTaskButtons();
     taskHeader.appendChild(taskButtons);
@@ -183,16 +183,16 @@ const UI = (() => {
     const parentTaskId = parentTask.getAttribute("data-id");
     let nestedLvl;
     if (parentTask.classList.contains("task")) {
-      nestedLvl = Storage.getNestedLvl(parentTaskId) + 1;
+      nestedLvl = Data.getNestedLvl(parentTaskId) + 1;
     } else {
       nestedLvl = 0;
     }
 
     const titleInput = form.querySelector("input");
-    const taskId = Storage.addTask(titleInput.value, nestedLvl);
+    const taskId = Data.addTask(titleInput.value, nestedLvl);
     task.setAttribute("data-id", taskId);
     if (nestedLvl > 0) {
-      Storage.addNested(parentTaskId, taskId);
+      Data.addNested(parentTaskId, taskId);
       const parentTaskTitle = parentTask.querySelector(".task-title");
       updateProjectStyling(parentTaskId, parentTaskTitle);
     }
@@ -208,8 +208,8 @@ const UI = (() => {
     const task = findParentElement(e, "task");
     const title = task.querySelector(".task-title");
     const taskId = task.getAttribute("data-id");
-    Storage.toggleTodo(taskId);
-    const doneState = Storage.isTaskDone(taskId);
+    Data.toggleTodo(taskId);
+    const doneState = Data.isTaskDone(taskId);
     if (doneState) {
       title.classList.add("done");
     } else {
@@ -223,12 +223,12 @@ const UI = (() => {
     const parentTask = task.parentNode.parentNode.parentNode;
     const parentTaskId = parentTask.getAttribute("data-id");
     if (parentTask.classList.contains("task")) {
-      Storage.deleteNested(parentTaskId, taskId);
+      Data.deleteNested(parentTaskId, taskId);
       const parentTaskTitle = parentTask.querySelector(".task-title");
       updateProjectStyling(parentTaskId, parentTaskTitle);
     }
 
-    Storage.deleteTask(taskId);
+    Data.deleteTask(taskId);
     task.remove();
   };
   const taskScheduleBtn = (e) => {
@@ -254,14 +254,14 @@ const UI = (() => {
       `div[data-id="${taskId}"] .scheduled`,
     );
     if (form.reportValidity()) {
-      Storage.setDate(taskId, form.elements["date"].value);
+      Data.setDate(taskId, form.elements["date"].value);
       if (!form.elements["hour"].disabled) {
-        Storage.setHour(taskId, form.elements["hour"].value);
+        Data.setHour(taskId, form.elements["hour"].value);
       }
       form.reset();
       dialog.close();
       dialog.querySelector("#hour").setAttribute("disabled", "");
-      spanSchedule.textContent = Storage.getDate(taskId);
+      spanSchedule.textContent = Data.getDate(taskId);
     }
   };
   const closeScheduleFormBtn = (e) => {
@@ -282,7 +282,7 @@ const UI = (() => {
     const scheduled = taskHeader.querySelector(".scheduled");
     const textWidget = document.createElement("input");
     textWidget.type = "text";
-    textWidget.value = Storage.getTitle(taskId);
+    textWidget.value = Data.getTitle(taskId);
     taskHeader.insertBefore(textWidget, scheduled);
     const applyTitleBtn = makeButton("ok-title-change", mdiCheck, 24);
     taskHeader.insertBefore(applyTitleBtn, scheduled);
@@ -293,13 +293,13 @@ const UI = (() => {
     const taskId = task.getAttribute("data-id");
     const scheduled = taskHeader.querySelector(".scheduled");
     const textWidget = taskHeader.querySelector('input[type="text"]');
-    Storage.setTitle(taskId, textWidget.value);
+    Data.setTitle(taskId, textWidget.value);
     textWidget.remove();
     const okTitleChange = taskHeader.querySelector(".ok-title-change");
     okTitleChange.remove();
     const title = document.createElement("span");
     title.className = "task-title";
-    title.textContent = Storage.getTitle(taskId);
+    title.textContent = Data.getTitle(taskId);
     taskHeader.insertBefore(title, scheduled);
   };
   const taskUnfoldArrow = (e) => {
@@ -317,7 +317,7 @@ const UI = (() => {
     task.appendChild(contents);
     const nested = document.createElement("div");
     nested.className = "nested";
-    showNestedTasks(nested, Storage.getNestedArr(taskId));
+    showNestedTasks(nested, Data.getNestedArr(taskId));
     contents.appendChild(nested);
     addDescriptionElements(task);
     const addNestedTask = makeButton(
@@ -345,7 +345,7 @@ const UI = (() => {
     contents.querySelector(".task-description-buttons").remove();
     const textarea = document.createElement("textarea");
     textarea.className = "task-description";
-    textarea.textContent = Storage.getDescription(taskId);
+    textarea.textContent = Data.getDescription(taskId);
     contents.insertBefore(textarea, nested);
     const descButtons = document.createElement("div");
     descButtons.className = "task-description-buttons";
@@ -362,7 +362,7 @@ const UI = (() => {
     const taskId = task.getAttribute("data-id");
     const contents = task.querySelector(".task-contents");
     const textarea = contents.querySelector("textarea");
-    Storage.setDescription(taskId, textarea.value);
+    Data.setDescription(taskId, textarea.value);
     textarea.remove();
     contents.querySelector(".task-description-buttons").remove();
     addDescriptionElements(task);
@@ -384,7 +384,7 @@ const UI = (() => {
     const form = dialog.querySelector("form");
     const taskId = dialog.getAttribute("data-id");
     const priority = +form.elements["priority"].value;
-    Storage.setPriority(taskId, priority);
+    Data.setPriority(taskId, priority);
     const title = body.querySelector(`div[data-id="${taskId}"]`);
     updatePriorityStyling(taskId, title);
     form.reset();
@@ -431,7 +431,7 @@ const UI = (() => {
   body.appendChild(newTaskBtn);
 })();
 
-class Storage {
+class Data {
   static storage = {
     todos: [],
     topLvl: [],
