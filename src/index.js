@@ -429,6 +429,7 @@ const UI = (() => {
   body.querySelector("#set-hour").addEventListener("change", toggleHourWidget);
   const newTaskBtn = makeButton("new-task", mdiPlusCircle, 24);
   body.appendChild(newTaskBtn);
+  return { body, showNestedTasks };
 })();
 
 class Data {
