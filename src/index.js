@@ -541,6 +541,8 @@ function deserialiseData() {
     return Object.assign(obj, item);
   });
   Data.storage = data;
+  const container = UI.body.querySelector("#tasks");
+  UI.showNestedTasks(container, Data.storage.topLvl);
 }
 
 window.addEventListener("unload", serialiseData);
