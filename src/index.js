@@ -536,7 +536,9 @@ function serialiseData() {
 }
 
 function deserialiseData() {
-  const data = localStorage.getItem("data");
+  const dataString = localStorage.getItem("data");
+  if (!dataString) return;
+  const data = JSON.parse(dataString);
   data.todos.map((item) => {
     const obj = Object.create(Todo.prototype);
     return Object.assign(obj, item);
